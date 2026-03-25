@@ -2,7 +2,8 @@
 
 ## 董二千的博客
 
-欢迎来到董二千的知识库 [小千FPGA笔记](https://nolebase.ayaka.io)，这里是 📒 笔记分区
+欢迎来到董二千的知识库 [小千FPGA笔记](https://nolebase.ayaka.io)，
+左侧是关于FPGA所有的学习笔记
 
 ## 小千的所有fpga学习笔记都会记录在此
 
