@@ -38,3 +38,19 @@ push完以后，git上面会自动更新
 
 把obsidian的笔记内容移植到本地vscode代码的笔记页面就可以了
 ![](assets/Pasted-image-20260325113129.png)
+
+
+
+
+
+
+
+
+### 2.3 注意事项
+
+图片文件名称不能有空格
+用power rename批量将空格删除
+
+
+再用正则把所有图片链接更改
+![](assets/Pasted-image-20260325133850917.png)
