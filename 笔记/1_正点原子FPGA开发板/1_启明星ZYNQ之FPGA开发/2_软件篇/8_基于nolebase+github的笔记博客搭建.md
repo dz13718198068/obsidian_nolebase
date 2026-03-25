@@ -37,3 +37,4 @@ push完以后，git上面会自动更新
 
 
 把obsidian的笔记内容移植到本地vscode代码的笔记页面就可以了
+![](photo/Pasted%20image%2020260325113129.png)
