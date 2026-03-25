@@ -10,7 +10,7 @@
 Zynq 是由两个主要部分组成的：
 1. PL： 可编程逻辑(Progarmmable Logic)，也就是 FPGA 部分。
 2. PS： 处理系统（Processing System)， 就是 ARM 的 SOC 的部分
-![|247](assets/Pasted%20image%2020250604200240.png)
+![|247](assets/Pasted-image-20250604200240.png)
 ---
 ### 二、ZYNQ 芯片命名规则
 Artix7、 Kintex7 和 Virtex7 这三个系列的命名规则是通用的
@@ -27,7 +27,7 @@ Artix7、 Kintex7 和 Virtex7 这三个系列的命名规则是通用的
 	- C：商业级， 表示芯片可以工作在 0°C 到+85°C；
 	- E：扩展级， 表示芯片可以工作在 0°C 到+100°C； 
 	- I：工业级， 表示芯片可以工作在-40°C 到+125°C。
-![](assets/Pasted%20image%2020250604200931.png)
+![](assets/Pasted-image-20250604200931.png)
 
 
 

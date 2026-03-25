@@ -1,4 +1,4 @@
-![|315](assets/Pasted%20image%2020250604110721.png)
+![|315](assets/Pasted-image-20250604110721.png)
 - [display_ctrl](#display_ctrl)
 	- [display_ctrl.c](#display_ctrl#display_ctrl.c)
 	- [display_ctrl.h](#display_ctrl#display_ctrl.h)

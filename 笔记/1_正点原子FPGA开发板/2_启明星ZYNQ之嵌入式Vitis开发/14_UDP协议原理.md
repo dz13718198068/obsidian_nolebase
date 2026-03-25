@@ -1,10 +1,10 @@
 **一、UDP协议报文结构**
 
 udp协议报文结构
-![](assets/Pasted%20image%2020250526084048.png)
+![](assets/Pasted-image-20250526084048.png)
 
 UDP的首部有共8字节(而TCP\IP的首部有20字节)
-![](assets/Pasted%20image%2020250526084050.png)
+![](assets/Pasted-image-20250526084050.png)
 
 UDP封装如图：
 
@@ -17,17 +17,17 @@ UDP封装如图：
  **UDP 长度** ： 是指整个UDP数据报的长度 ， 包括 报头 + 载荷，
 
  **UDP校验和** ： 用于检查数据在传输中是否出错，是否出现bit反转的问题，当进行校验时，需要在UDP数据报之前增加临时的伪首部。
-![](assets/Pasted%20image%2020250526084053.png)
+![](assets/Pasted-image-20250526084053.png)
 
 代码中结构体定义
-![](assets/Pasted%20image%2020250526084057.png)
+![](assets/Pasted-image-20250526084057.png)
 
 **二、UDP数据递交流程**
 
 首先申请一个pbuf，其中有个54字节空间。用于保存各层的首部
-![](assets/Pasted%20image%2020250526084101.png)
-![](assets/Pasted%20image%2020250526084103.png)
-![](assets/Pasted%20image%2020250526084106.png)
+![](assets/Pasted-image-20250526084101.png)
+![](assets/Pasted-image-20250526084103.png)
+![](assets/Pasted-image-20250526084106.png)
 
  pbuf的层头大小为PBUF_TRANSPORT（54字节）
 
@@ -36,7 +36,7 @@ UDP封装如图：
  再一次偏移payload指针添加IP首部（20字节）
 
 **三、UDP控制块结构**
-![](assets/Pasted%20image%2020250526084109.png)
+![](assets/Pasted-image-20250526084109.png)
 
  IP_PBC：通用IP控制块
 
@@ -51,5 +51,5 @@ UDP封装如图：
  void *recv_arg：用户自定义参数，接收回调入参
 
 **四、UDP控制块原理**
-![](assets/Pasted%20image%2020250526084112.png)
-![](assets/Pasted%20image%2020250526084115.png)
+![](assets/Pasted-image-20250526084112.png)
+![](assets/Pasted-image-20250526084115.png)

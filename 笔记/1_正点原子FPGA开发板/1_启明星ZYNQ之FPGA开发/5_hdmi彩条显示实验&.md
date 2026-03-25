@@ -47,7 +47,7 @@ HDMI取而代之，并向下兼容VGA
 
 
 ## 八、源码备份
-![|340](assets/Pasted%20image%2020250529155337.png)
+![|340](assets/Pasted-image-20250529155337.png)
 
 ```verilog
 module  hdmi_colorbar_top(

@@ -11,10 +11,10 @@ D:/Notepadpp/Notepad++/notepad++.exe [file name] -n[line number]
 
 
 
-![](assets/Pasted%20image%2020250605010902.png)
-![|540](assets/Pasted%20image%2020250605010930.png)
+![](assets/Pasted-image-20250605010902.png)
+![|540](assets/Pasted-image-20250605010930.png)
 ## 2.2 从vivado打开notepad自动v格式
-![](assets/Pasted%20image%2020250605011315.png)
+![](assets/Pasted-image-20250605011315.png)
 
 
 

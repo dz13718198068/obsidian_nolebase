@@ -1,11 +1,11 @@
-![|350](assets/Pasted%20image%2020250517190255.png)
+![|350](assets/Pasted-image-20250517190255.png)
 54 个 MIO + 64 个 EMIO
 
 
 MIO 一览表
-![](assets/Pasted%20image%2020250517190501.png)
-![](assets/Pasted%20image%2020250517191300.png)
-![](assets/Pasted%20image%2020250518085611.png)
+![](assets/Pasted-image-20250517190501.png)
+![](assets/Pasted-image-20250517191300.png)
+![](assets/Pasted-image-20250518085611.png)
 左边的一列是寄存器，上半部分是关于中断的
 
 - DATA_RO：数据只读寄存器。通过该寄存器能够观察器件引脚上的值。如果 GPIO 信号配置为输出，则通常会反映输出上驱动的值，写入此寄存器将被忽略。
@@ -27,46 +27,46 @@ MIO7 和 8 只能做为输出 IO 使用
 
 
 系统框图：
-![|500](assets/Pasted%20image%2020250518090222.png)
+![|500](assets/Pasted-image-20250518090222.png)
 
 
 step1：创建 Vivado 工程
 step2：使用 IP Integrator 创建 Processing System
 基于最小系统进行修改
-![|408](assets/Pasted%20image%2020250518090609.png)
+![|408](assets/Pasted-image-20250518090609.png)
 启明星开发板上的 Bank1 即原理图中的 BANK501 为 1.8V
 打开GPIO_MIO接口
-![|600](assets/Pasted%20image%2020250518090743.png)
+![|600](assets/Pasted-image-20250518090743.png)
 将使用到的5 个 GPIO_MIO 连接到外设 LED 和 KEY 上。
 这些 GPIO_MIO 当作 GPIO 使用来驱动外设 LED 和 KEY。
 这些引脚都是PS端的，不需要在 PL 中进行引脚位置约束
-![|500](assets/Pasted%20image%2020250518090948.png)
+![|500](assets/Pasted-image-20250518090948.png)
 
 step3：生成顶层 HDL
 
-![|625](assets/Pasted%20image%2020250518091121.png)
-![|475](assets/Pasted%20image%2020250518091215.png)
+![|625](assets/Pasted-image-20250518091121.png)
+![|475](assets/Pasted-image-20250518091215.png)
 创建顶层 HDL Wrapper
-![](assets/Pasted%20image%2020250518091244.png)
+![](assets/Pasted-image-20250518091244.png)
 未用到 PL 部分，所以无需生成 Bitstream 文件
 导出硬件
-![](assets/Pasted%20image%2020250518091336.png)
+![](assets/Pasted-image-20250518091336.png)
 
 软件设计
 创建工程，选择Empty Application模板
 可以看到 SDK 创建了一个 gpio_mio 目录和 gpio_mio_bsp 目录
 打开 gpio_mio_bsp 目录下的system.mss 文件，找到 ps7_gpio_0
-![|650](assets/Pasted%20image%2020250518091752.png)
+![|650](assets/Pasted-image-20250518091752.png)
 导入示例
-![|650](assets/Pasted%20image%2020250518091916.png)
+![|650](assets/Pasted-image-20250518091916.png)
 - xgpiops_intr_example.c 包含有关如何直接使用 XGpiops 驱动程序的示例。此示例显示了中断模式下驱动程序的用法，并使用 GPIO 的中断功能检测按钮事件，根据输入控制 LED 输出
 - xgpiops_polled_example.c同样包含有关如何直接使用 XGpiops 驱动程序的示例。此示例提供了用于读取/写入各个引脚的 API 的用法
 将模板172行output_pin改成0下载到开发板即可看到led闪烁
-![|500](assets/Pasted%20image%2020250518092357.png)
+![|500](assets/Pasted-image-20250518092357.png)
 根据模板继续更改代码
 在Empty Application模板中添加main.c文件
-![|500](assets/Pasted%20image%2020250518092738.png)
-![|500](assets/Pasted%20image%2020250518092845.png)
+![|500](assets/Pasted-image-20250518092738.png)
+![|500](assets/Pasted-image-20250518092845.png)
 
 ```C
 #include "xparameters.h" //器件参数信息
@@ -149,14 +149,14 @@ XGpioPs_WritePin(&Gpio, MIOLED0, 0x0); //向指定引脚写入数据： 0 或 1
 
 编译工程。
 保存 main.c 文件，我们打开 Binaries 目录，看到已经有 elf 文件，说明工程已经编译过了
-![|275](assets/Pasted%20image%2020250518095743.png)
+![|275](assets/Pasted-image-20250518095743.png)
 手动编译操作
-![|300](assets/Pasted%20image%2020250518095836.png)
+![|300](assets/Pasted-image-20250518095836.png)
 
 使用run configurations下载
-![|575](assets/Pasted%20image%2020250518100120.png)
+![|575](assets/Pasted-image-20250518100120.png)
 一定要选对elf文件和硬件平台
-![|650](assets/Pasted%20image%2020250518100325.png)
+![|650](assets/Pasted-image-20250518100325.png)
 该操作会让程序在DDR3中运行
 
 灯闪实验完成

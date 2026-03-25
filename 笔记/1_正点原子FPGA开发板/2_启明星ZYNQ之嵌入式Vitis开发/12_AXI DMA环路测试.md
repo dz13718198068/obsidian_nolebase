@@ -1,41 +1,41 @@
 任务：使用PL的AXI DMA IP核从DDR3中读取数据，并将数据写回到DDR3中
-![](assets/Pasted%20image%2020250522204216.png)
+![](assets/Pasted-image-20250522204216.png)
 
 实现：
 在最小系统下操作
 首先打开HP接口，打开时钟复位，打开GP接口（PS作为Master）
-![|500](assets/Pasted%20image%2020250522222212.png)
+![|500](assets/Pasted-image-20250522222212.png)
 打开中断，打开PL时钟（为PL DMA提供时钟）
-![|500](assets/Pasted%20image%2020250522222437.png)
+![|500](assets/Pasted-image-20250522222437.png)
 添加AXI DMA IP核
-![|275](assets/Pasted%20image%2020250522222544.png)
+![|275](assets/Pasted-image-20250522222544.png)
 设置IP核，关闭S/G模式，使用简单DMA传输模式。其他默认
-![|475](assets/Pasted%20image%2020250522222715.png)
+![|475](assets/Pasted-image-20250522222715.png)
 添加AXI4 Stream Data FIFO
-![|300](assets/Pasted%20image%2020250522222756.png)
+![|300](assets/Pasted-image-20250522222756.png)
 配置这个fifo，默认即可
 2个1位中断线，合成1个2位中断线
-![|425](assets/Pasted%20image%2020250523101742.png)
+![|425](assets/Pasted-image-20250523101742.png)
 自动连接
-![|675](assets/Pasted%20image%2020250523101856.png)
+![|675](assets/Pasted-image-20250523101856.png)
 再次自动连接
-![|725](assets/Pasted%20image%2020250523102040.png)
+![|725](assets/Pasted-image-20250523102040.png)
 手动连接fifo和concat
-![|700](assets/Pasted%20image%2020250523102206.png)
+![|700](assets/Pasted-image-20250523102206.png)
 Generate output products + create HDL Wrapper
 打开SDK，创建Empty工程，添加axidma模板
-![|700](assets/Pasted%20image%2020250523125016.png)
+![|700](assets/Pasted-image-20250523125016.png)
 创建main.c，对照模板进行编程（文档末尾）
 
 程序在进入DDR读写功能后卡住
-![|475](assets/Pasted%20image%2020250524104958.png)
+![|475](assets/Pasted-image-20250524104958.png)
 时序很差
-![|425](assets/Pasted%20image%2020250524105029.png)
+![|425](assets/Pasted-image-20250524105029.png)
 怀疑是时序差导致的DDR无法工作
 尝试更改综合策略，但无效果
-![|625](assets/Pasted%20image%2020250524105157.png)
+![|625](assets/Pasted-image-20250524105157.png)
 现在怀疑是系统自动连线的时钟导致的，想把100M同步时钟换成PLL试一下
-![](assets/Pasted%20image%2020250524105340.png)
+![](assets/Pasted-image-20250524105340.png)
 
 运行“report_timing”或“report_timing_summary”命令后，会注意到 WNS、TNS、WHS 和 THS。
 WNS 代表最差负时序裕量 (Worst Negative Slack)
@@ -53,36 +53,36 @@ vivado逆天Bug
 继续实验
 Debug As
 Launch on Hardware (System Debugger)
-![|660](assets/Pasted%20image%2020250526124002.png)
+![|660](assets/Pasted-image-20250526124002.png)
 添加Memory Monitors
 添加需要监视的储存器地址0x1200000
-![|460](assets/Pasted%20image%2020250526124117.png)
+![|460](assets/Pasted-image-20250526124117.png)
 改成16进制
-![|540](assets/Pasted%20image%2020250526124302.png)
-![|540](assets/Pasted%20image%2020250526132113.png)
+![|540](assets/Pasted-image-20250526124302.png)
+![|540](assets/Pasted-image-20250526132113.png)
 设置断点
-![|580](assets/Pasted%20image%2020250526153201.png)
+![|580](assets/Pasted-image-20250526153201.png)
 断点Xil_DCacheFlushRange((UINTPTR) tx_buffer_ptr, MAX_PKT_LEN);   //刷新Data Cache
 处，0x1200000的值已经被改写成
 由于 CPU 与 DDR3 之间是通过 Cache 交互的
 数据暂存在 Cache中，没有刷新 Data Cache 数据到 DDR3
 ==显示的数据是 Data Cache 中的。==
 而0x1400000还未写入数据
-![|540](assets/Pasted%20image%2020250526153321.png)
+![|540](assets/Pasted-image-20250526153321.png)
 运行到断点 3 处，
 执行完第 100 行的 DMA 发送函数，
 完成从内存中读取数据传输给外设，
 即DMA 从地址 0x1200000 处读取数据传输给外设， 
 此时地址 0x1400000 处的数据未更新。
-![|540](assets/Pasted%20image%2020250526160144.png)
+![|540](assets/Pasted-image-20250526160144.png)
 接着运行到断点 5 处，
 刷新 Data Cache 后，
 此时我们发现地址 0x1400000 处的值变为 00，
 紧随其后的地址处的数据都变成预期的值。
-![|540](assets/Pasted%20image%2020250526161424.png)
+![|540](assets/Pasted-image-20250526161424.png)
 到此，使用 DMA 从 DDR3 中读取数据， 并将数据写回到 DDR3 中的实验任务就完成了。
 继续往下执行，到程序结束，
-![|420](assets/Pasted%20image%2020250526162027.png)
+![|420](assets/Pasted-image-20250526162027.png)
 
 
 

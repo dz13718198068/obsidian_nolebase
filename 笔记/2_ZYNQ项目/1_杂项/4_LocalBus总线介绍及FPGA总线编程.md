@@ -9,13 +9,13 @@
 
 ## 一、从设备SRAM及工作原理介绍
 static ram静态存储器，无需刷新电路即能保存内部存储数据
-![|209](assets/Pasted%20image%2020251225155235.png)
+![|209](assets/Pasted-image-20251225155235.png)
 **1、举例：**
 当中11位是行地址，另外11位是列地址，这是通过RAM地址接口进行分离的。
 行地址解码器（row decoder）将会首先确定行地址，然后列地址解码器（column decoder）将会确定列地址，这样就能确定唯一的存储数据的位置，然后该数据就会通过RAM数据接口将数据传到数据总线。
 另外，须要注意的是，RAM内部存储信息的矩阵并非一个正方形的，也就是行和列的数目不是同样的－－行的数目比列的数目少（DRAM）。
-![|500](assets/Pasted%20image%2020251225163313.png)
-![|500](assets/Pasted%20image%2020251225163245.png)
+![|500](assets/Pasted-image-20251225163313.png)
+![|500](assets/Pasted-image-20251225163245.png)
 
 **2、真值表解释：**
 第二行：out为低，读数据
@@ -23,11 +23,11 @@ static ram静态存储器，无需刷新电路即能保存内部存储数据
 
 **3、写时序**
 
-![|500](assets/Pasted%20image%2020251225164242.png)
+![|500](assets/Pasted-image-20251225164242.png)
 
 **4、读时序**
 
-![|500](assets/Pasted%20image%2020251225164301.png)
+![|500](assets/Pasted-image-20251225164301.png)
 
 ## 二、主设备DSP6713的LocalBus
 
@@ -36,7 +36,7 @@ DSP6713是美国TI推出的C6000系列DSP芯片，款式较老，比较典型。
 
 Local Bus可以理解为，本地总线。在板内的一条总线，绝大多数情况下不需要引出，和板内其他芯片进行沟通的一条总线。
 
-![|460](assets/Pasted%20image%2020251225164824.png)
+![|460](assets/Pasted-image-20251225164824.png)
 **以6713为例资源介绍：**
 EMIF：LocalBus总线
 EDMA：
@@ -45,43 +45,43 @@ HPI：给主控器留了一个控制接口，ARM和DSP之间的通信接口，AR
 
 **实现路径：**
 DSP通过LocalBus总线连接FPGA，再通过FPGA扩展外设。
-![|300](assets/Pasted%20image%2020251225165434.png)
+![|300](assets/Pasted-image-20251225165434.png)
 
 
 
 **6713EMIF总线图**
-![|580](assets/Pasted%20image%2020251225170159.png)
+![|580](assets/Pasted-image-20251225170159.png)
 
 
 
 **LocalBus总线基本上就是一个标准的SRAM读写总线（并行）**
-![|380](assets/Pasted%20image%2020251225170248.png)
+![|380](assets/Pasted-image-20251225170248.png)
 
 
 
 **EMIF的写时序**
-![|540](assets/Pasted%20image%2020251225170401.png)
+![|540](assets/Pasted-image-20251225170401.png)
 **EMIF的读时序**
-![|580](assets/Pasted%20image%2020251225170822.png)
+![|580](assets/Pasted-image-20251225170822.png)
 
 
 **对于顶层而言的SRAM读写的测试程序**
-![](assets/Pasted%20image%2020251225172332.png)
+![](assets/Pasted-image-20251225172332.png)
 
 
 ## 三、FPGA对EMIF的时序译码
-![|740](assets/Pasted%20image%2020251225175558.png)
-![|540](assets/Pasted%20image%2020251225170822.png)
-![|540](assets/Pasted%20image%2020251225170401.png)
+![|740](assets/Pasted-image-20251225175558.png)
+![|540](assets/Pasted-image-20251225170822.png)
+![|540](assets/Pasted-image-20251225170401.png)
 
 **关于片选**
 程序里读数据是片选2，写数据是片选3，那么片选是如何实现的呢？
 手册里四个片选对应四个地址空间，分到不同的地址空间上。
 89AB代表片选，A000 0000相当于基地址
 如果想要往地址0x04000传输数据，则是基地址+地址=0xA000 4000
-![](assets/Pasted%20image%2020251225180559.png)
-![](assets/Pasted%20image%2020251225181224.png)
-![](assets/Pasted%20image%2020251225181706.png)
+![](assets/Pasted-image-20251225180559.png)
+![](assets/Pasted-image-20251225181224.png)
+![](assets/Pasted-image-20251225181706.png)
 
 
 
@@ -89,12 +89,12 @@ DSP通过LocalBus总线连接FPGA，再通过FPGA扩展外设。
 6713有4个片选，CS0连ADRAM，CS1连外部Flash，CS2、CS3可自定义
 
 举例：6713接两个串口控制器82C52
-![|500](assets/Pasted%20image%2020251225183439.png)
-![|380](assets/Pasted%20image%2020251225183521.png)
+![|500](assets/Pasted-image-20251225183439.png)
+![|380](assets/Pasted-image-20251225183521.png)
 
 问题：如果想接4个82C52怎么办？使用38译码器74HC138进行片选
-![|300](assets/Pasted%20image%2020251229200332.png)
-![|420](assets/Pasted%20image%2020251229200552.png)
+![|300](assets/Pasted-image-20251229200332.png)
+![|420](assets/Pasted-image-20251229200552.png)
 用地址线中的A6-A4接到38译码器的输入端
 4片82C52分别接到了Y0，Y1，Y3，Y5上，
 对应74HC380的选通为000，001，011，101
@@ -103,28 +103,28 @@ DSP通过LocalBus总线连接FPGA，再通过FPGA扩展外设。
 选通2号82C52，往里面写入数据
 因为没有用到片选，所以write(0xa000 000c)或者(0xb000 000c)都可以操作2号82C52的第0个寄存器
 （c对应的是1100，所以对应011xx就是2号82C52）
-![|460](assets/Pasted%20image%2020251229200811.png)
+![|460](assets/Pasted-image-20251229200811.png)
 
 ## 五、芯片片选扩展示例
 上面用的是4片82C52，其实可以用一片XR16C854直接实现一个芯片4串口功能。
-![|140](assets/Pasted%20image%2020251229204722.png)
+![|140](assets/Pasted-image-20251229204722.png)
 
 如何解决片选问题：
-![](assets/Pasted%20image%2020251229204715.png)
-![](assets/Pasted%20image%2020251229204938.png)
+![](assets/Pasted-image-20251229204715.png)
+![](assets/Pasted-image-20251229204938.png)
 
 
 ## 六、FPGA在LocalBus总线上扩片选应用
 最终，落脚到FPGA上，谨记一句话，只要数字芯片能实现的，FPGA都是能实现的。
 使用FPGA进行片选，其实就是用FPGA实现译码器，例如16片选，则实现4-16译码器
-![|380](assets/Pasted%20image%2020251229210335.png)
+![|380](assets/Pasted-image-20251229210335.png)
 FPGA上如何实现译码器（A19未用到）
-![](assets/Pasted%20image%2020251229210447.png)
+![](assets/Pasted-image-20251229210447.png)
 
 ## 七、实现对FPGA内部逻辑块的控制
 数字芯片能实现的，FPGA都能实现，那么可以把82C52做到FPGA内。
 
-![](assets/Pasted%20image%2020251229212643.png)
+![](assets/Pasted-image-20251229212643.png)
 
 
 
