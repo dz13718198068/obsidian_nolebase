@@ -1,6 +1,6 @@
 
 ### **一、模块框图**
-![|500](photo/Pasted%20image%2020250526074609.png)
+![|500](assets/Pasted%20image%2020250526074609.png)
 输入信号：
 - sys_clk：系统时钟（50Mhz）
 - sys_rst_n：复位信号（用PUSH按键实现）
@@ -16,19 +16,19 @@
 后半周期：由亮到灭。
 ### **三、波形图**
 1、通过调节占空比实现呼吸灯效果。
-![](photo/Pasted%20image%2020250526074614.png)
+![](assets/Pasted%20image%2020250526074614.png)
 2、计数器
 cnt_200us：计数器；
 cnt_20ms：每次计数可控制空占比，计数到MAX则为单个脉冲循环；
 cnt_2s：每次计数代表单个脉冲循环，计数到MAX以2s的间隔区分‘’亮到灭‘’和‘’灭到亮‘’；
 led_flag：以2s的间隔区分‘’亮到灭‘’和‘’灭到亮‘‘。
-![](photo/Pasted%20image%2020250526074618.png)
+![](assets/Pasted%20image%2020250526074618.png)
 3、输出信号
 led_1：占空比的改变控制呼吸灯的亮灭；
 led_2：高低电平切换闪烁灯闪烁。
 
 
-![|700](photo/Pasted%20image%2020250526075712.png)
+![|700](assets/Pasted%20image%2020250526075712.png)
 ### **四、代码部分**
 
 ```verilog
@@ -117,17 +117,17 @@ endmodule
 **五、项目创建**
 1、创建项目
 打开vivado，Create Project，Next
-![|500](photo/Pasted%20image%2020250526075940.png)
+![|500](assets/Pasted%20image%2020250526075940.png)
 新建项目名称设置
-![|500](photo/Pasted%20image%2020250526075944.png)
+![|500](assets/Pasted%20image%2020250526075944.png)
 因为我们写的是RTL项目，所以选择RTL Project， 选择后点击next
-![|500](photo/Pasted%20image%2020250526075950.png)
+![|500](assets/Pasted%20image%2020250526075950.png)
 添加源代码（若已经写好直接add添加，也可next先跳过后续再创建），next，nest
-![|500](photo/Pasted%20image%2020250526075954.png)
+![|500](assets/Pasted%20image%2020250526075954.png)
 选择板卡类型
-![|500](photo/Pasted%20image%2020250526075958.png)
+![|500](assets/Pasted%20image%2020250526075958.png)
 创建新项目完成
-![|500](photo/Pasted%20image%2020250526080001.png)
+![|500](assets/Pasted%20image%2020250526080001.png)
 2、vivado界面
 主要组件
 1. 菜单栏 Menu Bar
@@ -140,30 +140,30 @@ endmodule
 8. 布局选择器 Layout Selector
 9. 提示栏 Status Bar
 10. 结果窗口 Results Windows Area
-![|500](photo/Pasted%20image%2020250526080023.png)
-![|180](photo/Pasted%20image%2020250526080027.png)
-![|220](photo/Pasted%20image%2020250526080032.png)
+![|500](assets/Pasted%20image%2020250526080023.png)
+![|180](assets/Pasted%20image%2020250526080027.png)
+![|220](assets/Pasted%20image%2020250526080032.png)
 3、添加verilog代码
-![|500](photo/Pasted%20image%2020250526080036.png)
+![|500](assets/Pasted%20image%2020250526080036.png)
 选择添加设计代码
-![|500](photo/Pasted%20image%2020250526080041.png)
+![|500](assets/Pasted%20image%2020250526080041.png)
 创建新的代码文件
-![|500](photo/Pasted%20image%2020250526080044.png)
+![|500](assets/Pasted%20image%2020250526080044.png)
 定义I/O port
-![|500](photo/Pasted%20image%2020250526080047.png)
+![|500](assets/Pasted%20image%2020250526080047.png)
 添加成功并编写代码
-![|500](photo/Pasted%20image%2020250526080051.png)
+![|500](assets/Pasted%20image%2020250526080051.png)
 代码写完后进行综合，根据报错修改至代码正确为止
-![|500](photo/Pasted%20image%2020250526080055.png)
+![|500](assets/Pasted%20image%2020250526080055.png)
 选择笔记本电脑最大核心数量可增加综合速度
-![|540](photo/Pasted%20image%2020250526080059.png)
+![|540](assets/Pasted%20image%2020250526080059.png)
 4、仿真
 添加并编写tb文件进行仿真模拟
-![|500](photo/Pasted%20image%2020250526080103.png)
+![|500](assets/Pasted%20image%2020250526080103.png)
 创建仿真文件，一般命名方式为：tb_xxxxx
-![|500](photo/Pasted%20image%2020250526080106.png)
+![|500](assets/Pasted%20image%2020250526080106.png)
 source文件夹中出现新创建的仿真文件，根据仿真需求编写仿真代码
-![|540](photo/Pasted%20image%2020250526080110.png)
+![|540](assets/Pasted%20image%2020250526080110.png)
 ```verilog
 `timescale 1ns / 1ns
 
@@ -207,10 +207,10 @@ u_breath_led(
 endmodule
 ```
 仿真波形
-![|660](photo/Pasted%20image%2020250526080221.png)
+![|660](assets/Pasted%20image%2020250526080221.png)
 5、实现设计综合网表
-![|500](photo/Pasted%20image%2020250526080224.png)
+![|500](assets/Pasted%20image%2020250526080224.png)
 6、分配管脚
-![|500](photo/Pasted%20image%2020250526080228.png)
+![|500](assets/Pasted%20image%2020250526080228.png)
 **六、上板测试，生成比特流，打开硬件管理**
-![|500](photo/Pasted%20image%2020250526080231.png)
+![|500](assets/Pasted%20image%2020250526080231.png)

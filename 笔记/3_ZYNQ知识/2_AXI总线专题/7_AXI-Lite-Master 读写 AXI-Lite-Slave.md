@@ -17,34 +17,34 @@
 ## 2.1、封装 maxi_lite_gpio IP
 
 放好代码
-![|380](photo/Pasted%20image%2020260205160012.png)
+![|380](assets/Pasted%20image%2020260205160012.png)
 创建空工程
 添加ip源码，maxi_lite_gpio 
-![|420](photo/Pasted%20image%2020260205160317.png)
+![|420](assets/Pasted%20image%2020260205160317.png)
 创建ip
  tools 菜单中找到 Create and Package New IP。
  这次选package your current project！！！
-![|420](photo/Pasted%20image%2020260205160424.png)
+![|420](assets/Pasted%20image%2020260205160424.png)
 
 新增 IP 编辑窗口
-![|380](photo/Pasted%20image%2020260205160752.png)
+![|380](assets/Pasted%20image%2020260205160752.png)
 
 参数接口
-![|420](photo/Pasted%20image%2020260205160739.png)
+![|420](assets/Pasted%20image%2020260205160739.png)
 
 信号接口
-![|380](photo/Pasted%20image%2020260205160822.png)
+![|380](assets/Pasted%20image%2020260205160822.png)
 
 完成ip打包
-![|380](photo/Pasted%20image%2020260205160853.png)
+![|380](assets/Pasted%20image%2020260205160853.png)
 打包完的文件如下
-![|460](photo/Pasted%20image%2020260205162727.png)
+![|460](assets/Pasted%20image%2020260205162727.png)
 
 ## 2.1、封装 saxi_lite_gpio  IP
 
 同上（略）
 两个ip核已经就绪
-![|300](photo/Pasted%20image%2020260205162752.png)
+![|300](assets/Pasted%20image%2020260205162752.png)
 
 
 
@@ -52,13 +52,13 @@
 
 
 设置 IP 路径
-![](photo/Pasted%20image%2020260205163055.png)
+![](assets/Pasted%20image%2020260205163055.png)
 
 创建 BD 工程
 添加以上完成的 maxi_lite_gpio 和 saxi_lite_gpio 两个 IP，
 添加虚拟 IO 用于观察数据
 完成连线
-![](photo/Pasted%20image%2020260205163944.png)
+![](assets/Pasted%20image%2020260205163944.png)
 
 
 编写顶层代码，给个复位信号
@@ -801,7 +801,7 @@ endmodule
 # 五、模拟仿真
 
 加快仿真，可以把 maxi_lite_gpio 的 IP 源码中读写的间隔时间减少，如下图所示：
-![|460](photo/Pasted%20image%2020260206095513.png)
+![|460](assets/Pasted%20image%2020260206095513.png)
 每次更改 ip 源码后，在 Tcl Console 中输入 reset_project 对 fpga 工程进行复位
 单击 Refresh IP Catalog 更新 IP 状态
 再单击 Upgrade Selected
@@ -809,12 +809,12 @@ endmodule
 仿真
 
 主机仿真信号
-![](photo/Pasted%20image%2020260206110311.png)
+![](assets/Pasted%20image%2020260206110311.png)
 
 从机仿真信号
-![](photo/Pasted%20image%2020260206110540.png)
+![](assets/Pasted%20image%2020260206110540.png)
 
-![](photo/Pasted%20image%2020260206110708.png)
+![](assets/Pasted%20image%2020260206110708.png)
 
 
 
@@ -841,7 +841,7 @@ endmodule
 # 六、遇到的问题
 
 ## 1 自己打包的IP核有问题
-![|300](photo/Pasted%20image%2020260205164210.png)
+![|300](assets/Pasted%20image%2020260205164210.png)
 
 <font color="#ff0000">不知道啥原因，反正全删了重新生成一边重新弄一遍就好了</font>
 

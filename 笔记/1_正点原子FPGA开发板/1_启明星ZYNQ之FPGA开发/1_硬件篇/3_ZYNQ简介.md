@@ -32,19 +32,19 @@ FPGA 基本结构一般由六部分组成，分别为
 - 布线资源
 - 嵌入式块 RAM 
 - 内嵌专用硬核
-![|580](photo/Pasted%20image%2020250604213959.png)
+![|580](assets/Pasted%20image%2020250604213959.png)
 ##### 1. 可编程输入/输出单元
 I/O 单元，输入/输出（Input/Ouput），与外界电路的接口部分Zynq 上的通用输入/输出功能（IOB）合起来被称作 SelectIO 资源。50 个 IOB 一组。每个 IOB 有1个焊盘，与外部世界连接来做单个信号的输入或输出。每个 IOB 还包含一个IOSERDES 和 IODELAY 资源，可以做并行和串行数据的可编程转换。
-![|620](photo/Pasted%20image%2020250604214142.png)
+![|620](assets/Pasted%20image%2020250604214142.png)
 ##### 2. 基本可编程逻辑单元
 基本可编程逻辑单元几乎都是由查找表（LUT， Look Up Table）和寄存器（Register）组成。比较经典的基本可编程逻辑单元的配置是一个寄存器加一个查找表，但是不同厂商的寄存器与查找表也有一定的差异，而且寄存器与查找表的组合模式也不同。
 Xilinx 7 系列 FPGA 中的可编程逻辑单元叫 CLB（Configurable Logic Block，可配置逻辑块），每个CLB 里包含两个逻辑片（ Slice）。每个 Slice 由 4 个查找表、 8 个触发器和其他一些逻辑所组成的。 CLB示意图如下所示：
-![|580](photo/Pasted%20image%2020250604214637.png)
+![|580](assets/Pasted%20image%2020250604214637.png)
 CLB 是逻辑单元的最小组成部分，在 PL 中排列为一个二维阵列，通过可编程互联连接到其他类似的资源。每个 CLB 里包含两个逻辑片，并且紧邻一个开关矩阵， 如下图所示
-![|620](photo/Pasted%20image%2020250604214659.png)
+![|620](assets/Pasted%20image%2020250604214659.png)
 ##### 5. 嵌入式块 RAM
 Zynq-7000 里的块 RAM 和 Xilinx 7 列 FPGA 里的 BRAM 是等同的，它们可以实现 RAM、 ROM 和先入先出（First In First Out， FIFO）缓冲器。每个块RAM 可以存储最多 36KB 的信息，并且可以被配置为一个 36KB 的 RAM 或两个独立的 18KB RAM。默认的字宽是 18 位，这样的配置下每个 RAM 含有 2048 个存储单元。 RAM 还可以被“重塑”来包含更多更小的单元（比如 4096 x9 位或 8192x4 位），或是另外做成更少更长的单元（如 1024 x36 位或 512x72 位）。把两个或多个块 RAM 组合起来可以形成更大的存储容量。 PL 中的块 RAM 示意图如下所示：
-![|580](photo/Pasted%20image%2020250604214810.png)
+![|580](assets/Pasted%20image%2020250604214810.png)
 除了块 RAM，还可以灵活地将 LUT 配置成 RAM、 ROM、 FIFO 等存储结构，这种技术被称为分布式 RAM。根据设计需求，块 RAM 的数量和配置方式也是器件选型的一个重要标准。
 ##### 4. 丰富的布线资源
 布线资源根据工艺、长度、宽度和分布位置的不同而划分为4 类不同的类别：
@@ -59,14 +59,14 @@ Xilinx 7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 
 主要指那些通用性相对较弱，不是所有 FPGA 器件都包含硬核。
 在 ZYNQ 的 PL 端有一个数模混合模块——XADC，它就是一个硬核。 XADC 包含两个模数转换器（ADC），一个模拟多路复用器，片上温度和片上电压传感器等。我们可以利用这个模块监测芯片温度和供电电压，也可以用来测量外部的模拟电压信号。
 ##### 7. ZYNQ PL 架构
-![](photo/Pasted%20image%2020250604215310.png)
+![](assets/Pasted%20image%2020250604215310.png)
 
 ---
 ### 二、ZYNQ PS 简介
 ZYNQ = PS + PL
 PS：SoC
 PL：可编程逻辑器件
-![](photo/Pasted%20image%2020250604112035.png)
+![](assets/Pasted%20image%2020250604112035.png)
 #### PS部分
 ###### 1. APU
 - Application Processor Unit：应用处理单元
@@ -81,7 +81,7 @@ PL：可编程逻辑器件
 - Snoop Controller：一致性控制单元，通过SCU访问二级Cache或OCM
 - DMA：DMA通道，直接存储访问，可实现数据搬移
 - GIC：中断控制器，可以帮助CPU接收并管理外部中断
-![|420](photo/Pasted%20image%2020250604112059.png)
+![|420](assets/Pasted%20image%2020250604112059.png)
 ###### 2. APU之外
 - Central Interconnect：中央互联，类似于开关，可实现不用模块、接口间的通信。
 - SOC的其他互联：Central Interconnect、OCM互联、PL to Memory的互联。连接管理指挥各个模块的通信
@@ -102,9 +102,9 @@ PL：可编程逻辑器件
 - GP接口General Purpose Ports：通用接口，M_AXI_GP主接口：PS作为主机发起通信，S_AXI_GP从接口：PS作为从机响应通信
 - HP接口High Performance Ports高性能接口：连接到存储器互联，四个HP接口，fifo实现数据缓冲，实现高带宽大数据量的数据访问。例如使用摄像头即时存储图像。PL做主机，PS做从机
 - ACP接口，加速器一致接口：连接到SCU，可控制OCM片上存储器、二级Cache缓存。可实现PL到OCM和L2 Cache的访问。可实现从PL到PS存储器的低延时的访问。PL主机，PS从机
-![](photo/Pasted%20image%2020250526075553.png)
+![](assets/Pasted%20image%2020250526075553.png)
 ###### 4. PS外部接口
-![|500](photo/Pasted%20image%2020250604220203.png)
+![|500](assets/Pasted%20image%2020250604220203.png)
 
 ---
 ### 三、ZYNQ 的优势

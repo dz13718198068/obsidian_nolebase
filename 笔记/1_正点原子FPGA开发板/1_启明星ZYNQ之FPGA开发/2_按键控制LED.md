@@ -4,6 +4,6 @@ Key作为输入端口，LED作为输出端。
 器件：
 LED灯：置1亮，置0灭
 KEY按键：默认1，按下置0（使用时最好消抖）
-![|500](photo/Pasted%20image%2020250526074750.png)
-![|500](photo/Pasted%20image%2020250526074813.png)
-![|540](photo/Pasted%20image%2020250526074830.png)
+![|500](assets/Pasted%20image%2020250526074750.png)
+![|500](assets/Pasted%20image%2020250526074813.png)
+![|540](assets/Pasted%20image%2020250526074830.png)

@@ -4,44 +4,44 @@ Vivado工具使用规则
 2． Vivado Design Suite User Guide: DesignAnalysis and Closure Techniques(UG906)。
 
 # 一、FPGA 开发流程
-![|540](photo/Pasted%20image%2020250605091013.png)
+![|540](assets/Pasted%20image%2020250605091013.png)
 # 二、FPGA 工程管理
 主要分为以下四类：
 1. 开发过程中使用的辅助文档文件（如绘图软件绘制的波形图文件等），该类文件存放的文件夹我们命名为 doc；
 2. 新建工程及产生的文件，该类文件存放的文件夹我们命名为 prj； 
 3. 开发过程中的 RTL 代码文件，该类文件存放的文件夹我们命名为 rtl； 
 4. 仿真工程与仿真文件，该类文件存放的文件夹我们命名为 sim；
-![|420](photo/Pasted%20image%2020250605092730.png)
+![|420](assets/Pasted%20image%2020250605092730.png)
 # 三、点亮 LED 灯
 ## 3.1 功能分析
 PL_KEY0 按键来控制底板上的 PL_LED0 灯亮灭。
 按下点亮、松开熄灭。
 ## 3.2 硬件介绍
-![|500](photo/Pasted%20image%2020250605095231.png)
-![|420](photo/Pasted%20image%2020250605095243.png)
+![|500](assets/Pasted%20image%2020250605095231.png)
+![|420](assets/Pasted%20image%2020250605095243.png)
 ## 3.3 系统设计
 进行模块划分和梳理模块间交互信号
 ## 3.4 硬件介绍
 使用Viso绘制，绘制文件放在doc文件下
-![|460](photo/Pasted%20image%2020250605095524.png)
-![|460](photo/Pasted%20image%2020250605095624.png)
-![|380](photo/Pasted%20image%2020250605095635.png)
-![|460](photo/Pasted%20image%2020250605095644.png)
+![|460](assets/Pasted%20image%2020250605095524.png)
+![|460](assets/Pasted%20image%2020250605095624.png)
+![|380](assets/Pasted%20image%2020250605095635.png)
+![|460](assets/Pasted%20image%2020250605095644.png)
 正点原子提供了Viso模具
-![|500](photo/Pasted%20image%2020250605095733.png)
+![|500](assets/Pasted%20image%2020250605095733.png)
 复制到我的形状里
-![|500](photo/Pasted%20image%2020250605095804.png)
-![|540](photo/Pasted%20image%2020250605095826.png)
+![|500](assets/Pasted%20image%2020250605095804.png)
+![|540](assets/Pasted%20image%2020250605095826.png)
 ## 3.5 绘制波形图
 实际效果图
-![|460](photo/Pasted%20image%2020250605100101.png)
+![|460](assets/Pasted%20image%2020250605100101.png)
 根据效果图绘制真值表
-![|500](photo/Pasted%20image%2020250605100145.png)
+![|500](assets/Pasted%20image%2020250605100145.png)
 波形图绘制技巧：
 - 输入信号的颜色定义为绿色，
 - 输出的信号定义为红色，
 - 中间变量信号定义为蓝色。
-![|500](photo/Pasted%20image%2020250605100323.png)
+![|500](assets/Pasted%20image%2020250605100323.png)
 绘制波形完成后按照波形编写RTL代码。
 ## 3.6 编写RTL代码
 采用Notepad++工具来编写代码
@@ -53,9 +53,9 @@ PL_KEY0 按键来控制底板上的 PL_LED0 灯亮灭。
 3. 判断被测功能模块的输出是否满足设计预期。
 
 在前面 led\sim 中新建一个 tb 文件夹，
-![|500](photo/Pasted%20image%2020250605100927.png)
+![|500](assets/Pasted%20image%2020250605100927.png)
 在 tb 文件夹下面新建一个“tb_led.v”
-![|500](photo/Pasted%20image%2020250605100951.png)
+![|500](assets/Pasted%20image%2020250605100951.png)
 
 1. 定义仿真单位：仿真单位是 1ns，用于延迟语句，“#200”就是延迟 200ns；
 ```verilog
@@ -100,36 +100,36 @@ endmodule
 
 **在 modelsim中仿真**
 **建立project**
-![|460](photo/Pasted%20image%2020250605103114.png)
-![|460](photo/Pasted%20image%2020250605103131.png)
-![|460](photo/Pasted%20image%2020250605103233.png)
+![|460](assets/Pasted%20image%2020250605103114.png)
+![|460](assets/Pasted%20image%2020250605103131.png)
+![|460](assets/Pasted%20image%2020250605103233.png)
 - Create New File（创建新文件）
 - Add Existing File （添加已有文件）
 - Create Simulation（创建仿真）
 - Create New Folder（创建新文件夹）
 
 **这里我们先选择“Add Existing File”（添加已有文件）**
-![|500](photo/Pasted%20image%2020250605103320.png)
+![|500](assets/Pasted%20image%2020250605103320.png)
 **添加仿真文件**
-![|500](photo/Pasted%20image%2020250605103459.png)
+![|500](assets/Pasted%20image%2020250605103459.png)
 **文件添加完成**
-![|500](photo/Pasted%20image%2020250605103537.png)
+![|500](assets/Pasted%20image%2020250605103537.png)
 **编译：**
 - Compile Selected（编译所选）
 - Compile All（编译全部）
-![|500](photo/Pasted%20image%2020250605103633.png)
+![|500](assets/Pasted%20image%2020250605103633.png)
 - Compile Order：文件编译顺序，可以调整编译的.v 文件的编译顺序。
 - Compile Report：编译报告，内容为当次编译的详细报告。
 - Compile Summary：编译摘要，执行过的编译操作都在编译摘要有记录。
 
 **编译完成：**
-![|500](photo/Pasted%20image%2020250605103715.png)
+![|500](assets/Pasted%20image%2020250605103715.png)
 - “√”表示编译通过状态
 - “×”表示编译错误
 - 黄色的三角符表示包含警告的编译通过
 
 **开始配置仿真环境：【Simulate】→【Start Simulation...】**
-![|500](photo/Pasted%20image%2020250605103931.png)
+![|500](assets/Pasted%20image%2020250605103931.png)
 - Design Optimization：优化设计设置页面。
 - Runtime Options：运行选项配置，例如波形格式配置、仿真时间设置等。
 - Restart：重启仿真。
@@ -137,12 +137,12 @@ endmodule
 
 **配置仿真功能：**
 - Design：标签内居中的部分是 Modelsim 中当前包含的全部库，展开看到库中包含的设计单元，这些库和单元是为仿真服务的，使用者可以选择需要进行仿真的设计单元开始仿真，此时被选中的仿真单元的名字就会出现在下方的 Design Unit（s）位置。支持同时对多个文件进行仿真。右侧是 ==Resolution 选项，这里可以选择仿真的时间精度。==
-  ![|420](photo/Pasted%20image%2020250605104016.png)
+  ![|420](assets/Pasted%20image%2020250605104016.png)
 - VHDL
 - Verilog
 - Libraries：可以设置搜索库。 
   Search Libraries 和 Search Libraries First 的功能基本一致，唯一不同的是 Search Libraries First 中指定的库会在指定的用户库之前被搜索。
-  ![|460](photo/Pasted%20image%2020250605112738.png)
+  ![|460](assets/Pasted%20image%2020250605112738.png)
 - SDF：Standard Delay Format（标准延迟格式）的缩写，内部包含了各种延迟信息，也是用于时序仿真的重要文件。 
   SDF Files 区域用来添加 SDF 文件。
   第一个“Disable SDF warning”是禁用 SDF 警告，
@@ -152,25 +152,25 @@ endmodule
   latest选项选择最后的延迟作为统一值， 
   max 选项选择所有信号中延迟最大的值作为统一值， 
   min 选项选择所有信号中延迟最小的值作为统一值
-  ![|460](photo/Pasted%20image%2020250605112724.png)
+  ![|460](assets/Pasted%20image%2020250605112724.png)
 - Others
 
 **勾选“Enable optimization”**
-![|420](photo/Pasted%20image%2020250605114209.png)
+![|420](assets/Pasted%20image%2020250605114209.png)
 **优化选项进行如下图设置**
-![|460](photo/Pasted%20image%2020250605114246.png)
+![|460](assets/Pasted%20image%2020250605114246.png)
 如果不进行上面的优化选项配置， Modelsim SE-64 2020.4 仿真会报如下截图所示错误
-![|340](photo/Pasted%20image%2020250605114353.png)
+![|340](assets/Pasted%20image%2020250605114353.png)
 **点击“OK” 就可以开始进行功能仿真**
-![|460](photo/Pasted%20image%2020250605114420.png)
-![|460](photo/Pasted%20image%2020250605114437.png)
+![|460](assets/Pasted%20image%2020250605114420.png)
+![|460](assets/Pasted%20image%2020250605114437.png)
 **添加查看的信号**
-![|420](photo/Pasted%20image%2020250605114509.png)
-![|500](photo/Pasted%20image%2020250605114524.png)
+![|420](assets/Pasted%20image%2020250605114509.png)
+![|500](assets/Pasted%20image%2020250605114524.png)
 **仿真按钮，如下图**
-![|380](photo/Pasted%20image%2020250605114553.png)
+![|380](assets/Pasted%20image%2020250605114553.png)
 Restart：复位仿真，点击该按钮会有一个弹框如下图所示
-![|420](photo/Pasted%20image%2020250605114616.png)
+![|420](assets/Pasted%20image%2020250605114616.png)
 - Run Length：设置仿真时间，配合运行仿真按钮使用；
 - Run：运行仿真，配合设置仿真时间一起使用，会按照设置仿真时长进行仿真；
 - ContinueRun：继续仿真，在停止仿真后需要继续运行仿真，可以使用继续仿真按钮；
@@ -180,22 +180,22 @@ Restart：复位仿真，点击该按钮会有一个弹框如下图所示
 - 注意：使用“Run -All”与“ContinueRun”时，如果仿真工程是只有组合电路，没有使用时钟，工程仿真使用“Run -All”与“ ContinueRun”时，就只能跑到仿真文件的激励的节点，不能一直运行仿真。此时如果在仿真文件添加持续的时钟输入，点击“ Run -All”与“ContinueRun”时就会一直仿真。
 
 **选择仿真时间为 10us**
-![|500](photo/Pasted%20image%2020250605114749.png)
+![|500](assets/Pasted%20image%2020250605114749.png)
 **仿真结果**
-![|540](photo/Pasted%20image%2020250605114805.png)
+![|540](assets/Pasted%20image%2020250605114805.png)
 **ModelSim 软件中几个常用小工具**
 放大、缩小和全局显示功能，有快捷键
-![|540](photo/Pasted%20image%2020250605114828.png)
+![|540](assets/Pasted%20image%2020250605114828.png)
 黄色图标是用来在波形图上添加用来标志的黄色竖线，紧跟着的是将添加的黄色竖线对齐到信号的下降沿和上升沿
-![|580](photo/Pasted%20image%2020250605114906.png)
+![|580](assets/Pasted%20image%2020250605114906.png)
 **当我们需要对 IP 核进行仿真时一定要事先将 IP 核的库文件加载到Modelsim 库中去。**
 RTL 代码仿真验证完成
 
 ## 3.8 新建工程
-![|460](photo/Pasted%20image%2020250605121333.png)
-![|460](photo/Pasted%20image%2020250605121339.png)
-![|460](photo/Pasted%20image%2020250605121411.png)
-![|500](photo/Pasted%20image%2020250605121438.png)
+![|460](assets/Pasted%20image%2020250605121333.png)
+![|460](assets/Pasted%20image%2020250605121339.png)
+![|460](assets/Pasted%20image%2020250605121411.png)
+![|500](assets/Pasted%20image%2020250605121438.png)
 工程类型选择：
 - “RTL Project”是指按照正常设计流程所选择的类型，这也是常用的一种类型。
 	- “Do not specify sources at this time”：用于设置是否在创建工程向导的过程中添加设计文件，如果勾选后，则不创建或者添加设计文件，我们后续需要添加设计文件，所以不勾选该选项。
@@ -205,17 +205,17 @@ RTL 代码仿真验证完成
 - “Imported Project” 用于从 ISE、 XST 或 Synopsys Synplify 导入现有的工程源文件； 5）“Example Project”是指创建一个 Vivado 提供的工程模板。
 
 **选择开发板的芯片型号**
-![|500](photo/Pasted%20image%2020250605121626.png)
-![|580](photo/Pasted%20image%2020250605121712.png)
+![|500](assets/Pasted%20image%2020250605121626.png)
+![|580](assets/Pasted%20image%2020250605121712.png)
 Category:种类，如下图所示按照芯片用途有四个类别
 - Automotive ：车用芯片；
 - General Purpose：一般用途的芯片； 
 - Military/Hi-Reliability：军用/高可靠性的芯片； 
 - Radition Tolerant：辐射耐受性的芯片；
-![|500](photo/Pasted%20image%2020250605121746.png)
-![|500](photo/Pasted%20image%2020250605121903.png)
+![|500](assets/Pasted%20image%2020250605121746.png)
+![|500](assets/Pasted%20image%2020250605121903.png)
 **工程界面：**
-![](photo/Pasted%20image%2020250605121928.png)
+![](assets/Pasted%20image%2020250605121928.png)
 1. Flow Navigator。 Flow Navigator 提供对命令和工具的访问，其包含从设计输入到生成比特流的整个过程。 在点击了相应的命令时，整个 Vivado 工程主界面的各个子窗口可能会作出相应的更改。
 2. 数据窗口区域。默认情况下， Vivado IDE 的这个区域显示的是设计源文件和数据相关的信息。
 	- Sources 窗口： 显示层次结构（Hierarchy）、 IP 源文件（IP Sources）、库（Libraries）和编译顺序（Compile Order）的视图。
@@ -241,7 +241,7 @@ Category:种类，如下图所示按照芯片用途有四个类别
 
 ### 3.9.1 设置字体
 “Settings”→“Text Editor”→“Fonts and Colors”
-![|620](photo/Pasted%20image%2020250605122351.png)
+![|620](assets/Pasted%20image%2020250605122351.png)
 ### 3.9.2 手动设置顶层
 从“Sources”窗口的右击菜单中选择“Set as Top”
 
@@ -250,9 +250,9 @@ Category:种类，如下图所示按照芯片用途有四个类别
 
 ### 3.10.1 分析（Elaborated）
 Vivado 会编译 RTL 源文件并进行全面的语法检查，
-![|500](photo/Pasted%20image%2020250605122552.png)
+![|500](assets/Pasted%20image%2020250605122552.png)
 Vivado 会生成顶层原理图视图，并在默认 view layout 中显示设计。此页面可分配I/O
-![|540](photo/Pasted%20image%2020250605122659.png)
+![|540](assets/Pasted%20image%2020250605122659.png)
 - Name：工程中顶层端口的名称。
 - Direction：说明管脚是输入还是输出。
 - Neg Diff Pair：负差分对， 差分信号在 I/O Ports 窗口中只显示在一行里中（只会显示 P 端信号， N 端信号显示在 Neg Diff Pair 属性栏中）。
@@ -268,13 +268,13 @@ Vivado 会生成顶层原理图视图，并在默认 view layout 中显示设计
 - Pull Type：管脚上下拉设置，有上拉、下拉、保持与不设置。
 - Off-Chip Termination： 终端阻抗，默认 50Ω。
 - IN-TERM： 是用于 input 的串联电阻
-![|620](photo/Pasted%20image%2020250605122804.png)
+![|620](assets/Pasted%20image%2020250605122804.png)
 引脚配置在硬件原理图
 ==供电电压在原理图的bank供电电压==
-![|500](photo/Pasted%20image%2020250605123056.png)
+![|500](assets/Pasted%20image%2020250605123056.png)
 管脚约束
-![|500](photo/Pasted%20image%2020250605123143.png)
-![|620](photo/Pasted%20image%2020250605123132.png)
+![|500](assets/Pasted%20image%2020250605123143.png)
+![|620](assets/Pasted%20image%2020250605123132.png)
 “Ctrl+S”保存
 管脚约束也可以手敲
 
@@ -300,11 +300,11 @@ set_property -dict {PACKAGE_PIN L14 IOSTANDARD LVCMOS33} [get_ports key] set_pro
 create_clock -name clk -period 20 [get_ports sys_clk ]
 ```
 ### 3.10.2 对代码进行综合
-![|460](photo/Pasted%20image%2020250605123852.png)
+![|460](assets/Pasted%20image%2020250605123852.png)
 **“Open Synthesized Design”选项打开综合设计。**
-![|460](photo/Pasted%20image%2020250605123925.png)
+![|460](assets/Pasted%20image%2020250605123925.png)
 **综合后原理图**
-![|540](photo/Pasted%20image%2020250605123948.png)
+![|540](assets/Pasted%20image%2020250605123948.png)
 - IBUF 是输入缓存
 - OBUF 是输出缓存
 - 取反通过一个 LUT1实现
@@ -322,31 +322,31 @@ create_clock -name clk -period 20 [get_ports sys_clk ]
 - Report Utilization：资源利用率报告。
 - Report Power：电源报告。
 - Schematic：打开综合后的原理图设计。
-![|460](photo/Pasted%20image%2020250605124058.png)
+![|460](assets/Pasted%20image%2020250605124058.png)
 ## 3.11 设计实现
 **“Run Implementation”**
-![|460](photo/Pasted%20image%2020250605124216.png)
+![|460](assets/Pasted%20image%2020250605124216.png)
 **打开实现设计**
-![](photo/Pasted%20image%2020250605124245.png)
+![](assets/Pasted%20image%2020250605124245.png)
 Netlist”窗口中有“Nets”与“Leaf Cells”，点击“Nets”与“Leaf Cells”下面的选项，右边的器件图会高亮对应模块，所以实现设计将代码映射到了 FPGA 底层资源上。
 **查看“ Design Runs”窗口中的实现结果**
-![](photo/Pasted%20image%2020250605124341.png)
+![](assets/Pasted%20image%2020250605124341.png)
 与综合的选项类似
-![|460](photo/Pasted%20image%2020250605125003.png)
+![|460](assets/Pasted%20image%2020250605125003.png)
 ### 3.12 下载验证
-![|420](photo/Pasted%20image%2020250605133524.png)
+![|420](assets/Pasted%20image%2020250605133524.png)
 **生成bit流**
-![|540](photo/Pasted%20image%2020250605133539.png)
+![|540](assets/Pasted%20image%2020250605133539.png)
 **打开硬件管理**
-![|460](photo/Pasted%20image%2020250605133631.png)
+![|460](assets/Pasted%20image%2020250605133631.png)
 **连接硬件**
-![|420](photo/Pasted%20image%2020250605133650.png)
+![|420](assets/Pasted%20image%2020250605133650.png)
 **“Auto Connect”**
-![|500](photo/Pasted%20image%2020250605133706.png)
+![|500](assets/Pasted%20image%2020250605133706.png)
 **“ Program Device”**
-![|500](photo/Pasted%20image%2020250605133820.png)
+![|500](assets/Pasted%20image%2020250605133820.png)
 **下载程序**
-![|460](photo/Pasted%20image%2020250605134046.png)
+![|460](assets/Pasted%20image%2020250605134046.png)
 **“Enable end of startup check”**
 勾选就是使用下载完成校验，如果下载失败就会返回一个错误提示
 一般这里我们都是默认勾选的。

@@ -11,7 +11,7 @@
 传输层：TCP(可靠，只能在传输层分片)、UDP(不可靠)
 网络层：IP(可对UDP分片重组)、ARP(获取对方MAC，数据转发)、ICMP(Ping上是否互通)......
 链路层：数据链路层(MAC内核)＋物理层(PHY芯片)
-![](photo/Pasted%20image%2020250526084005.png)
+![](assets/Pasted%20image%2020250526084005.png)
 
 **lwIP+MAC+PHY实现了TCP/IP协议栈结构**（lwIP实现了应用层传输层网络层）
 
@@ -19,10 +19,10 @@
 
 封装：数据添加各层协议的首部。
 解封装：在各层间除去自层的首部。
-![](photo/Pasted%20image%2020250526084008.png)
+![](assets/Pasted%20image%2020250526084008.png)
 
 **2、lwIP结构框图**
-![](photo/Pasted%20image%2020250526084011.png)
+![](assets/Pasted%20image%2020250526084011.png)
 
 **3、如何使用lwIP**
 
@@ -49,7 +49,7 @@ MAC内核的特性：
  PHY交互接口：
  数据通道：介质接口RMII/MII
  管理通道：SMI站管理接口
-![](photo/Pasted%20image%2020250526084018.png)
+![](assets/Pasted%20image%2020250526084018.png)
 
 **3、SMI站管理接口**
 
@@ -58,17 +58,17 @@ MAC内核的特性：
  MDC：周期时钟引脚
  MDIO：数据输入/输出比特流
 **SMI帧格式**
-![](photo/Pasted%20image%2020250526084022.png)
+![](assets/Pasted%20image%2020250526084022.png)
 PHYAD：PHY地址
 REGAD：寄存器地址
 DATA数据位：16位数据位
-![](photo/Pasted%20image%2020250526084025.png)
-![](photo/Pasted%20image%2020250526084028.png)
+![](assets/Pasted%20image%2020250526084025.png)
+![](assets/Pasted%20image%2020250526084028.png)
 
 **4、介质接口MII、RMII**
 
 用于MAC与外接PHY互联，支持10/100数据传输模式。以太网帧转发到PHY设备当中
-![](photo/Pasted%20image%2020250526084031.png)
+![](assets/Pasted%20image%2020250526084031.png)
 
 介质接口MII、RMII比较
 
@@ -82,7 +82,7 @@ DATA数据位：16位数据位
  引脚数量
  参考时钟
  数据位宽等
-![](photo/Pasted%20image%2020250526084035.png)
+![](assets/Pasted%20image%2020250526084035.png)
 
 **介质接口MII、RMII参考时钟**
-![](photo/Pasted%20image%2020250526084037.png)
+![](assets/Pasted%20image%2020250526084037.png)

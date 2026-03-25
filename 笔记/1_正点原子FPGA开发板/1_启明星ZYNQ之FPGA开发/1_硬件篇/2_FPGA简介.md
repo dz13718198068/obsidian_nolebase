@@ -24,7 +24,7 @@ FPGA：Field Programmable Gate Array
 ### 二、FPGA 的发展
 #### 2.1 数字集成电路发展
 常用的门电路有与门、 或门、 非门、 与非门、 异或门等，
-![|380](photo/Pasted%20image%2020250604201820.png)
+![|380](assets/Pasted%20image%2020250604201820.png)
 数字集成电路发展：
 - 小规模集成电路（ Small Scale Integrated circuit， SSI）
 - 中规模集成电路（Medium Scale Integrated circuit， MSI）
@@ -43,7 +43,7 @@ FPGA：Field Programmable Gate Array
 **优劣：**
 - ASIC 有诸多优势，但是在用量不大的情况下，设计和制造这样的专用集成电路不仅成本很高，而且设计制造的周期也很长。
 - 可编程逻辑器件（ Programmable Logic Device， PLD）的出现成功解决了这个矛盾。作为一种通用器件生产，但它的逻辑功能是由用户通过对器件进行编程来设定的，而且有些 PLD 的集成度很高，足以满足一般数字系统设计的需要。可以由设计人员自行编程从而将数字系统“集成” 在一片 PLD 上，做成“片上系统” （System on Chip， SoC），而不必去请芯片制造厂商设计和制作专用集成电路芯片了。
-![|340](photo/Pasted%20image%2020250604204904.png)
+![|340](assets/Pasted%20image%2020250604204904.png)
 PLD 大体上可以分为：
 - **SPLD**：（simple PLD，简单 PLD），SPLD 中又可分为 PLA、 PAL 和GAL 几种类型。
 - **CPLD**：（complex PLD，复杂PLD）
@@ -52,7 +52,7 @@ PLD 大体上可以分为：
 
 **SPLD**：下图是 SPLD 中 PAL（可编程阵列逻辑）的电路结构图。通过对输入端（ input）到与门之间的可编程阵列（programmable array）进行编程，利用 PAL 可以获得不同形式的组合逻辑函数。
 
-![|420](photo/Pasted%20image%2020250604205147.png)
+![|420](assets/Pasted%20image%2020250604205147.png)
 **CPLD**：通过扩展 SPLD 的概念就可以得到 CPLD， CPLD 是复杂可编程逻辑器件，相当于将多个 PAL 用可编程互联阵列（Programmable Interconnect Array， PIA）连接起来，形成一个大的 PLD，如下图。CPLD 相对于 SPLD 最大的优势就是拥有更大的逻辑资源和布线的可能性。
 	Logic block（逻辑块）通常被称为逻辑阵列模块， 或者 LAB（Logic Array Block）。
 	每个LAB 相当于一个 PAL 电路，不同型号的 CPLD 器件可以包含十几个甚至上百个 LAB。
@@ -61,9 +61,9 @@ PLD 大体上可以分为：
 	而在 CPLD 中， I/O 管脚是通过 PIA 从器件的主要逻辑中分离出来的。
 	I/O 管脚有它自己的控制逻辑， 
 	I/O控制单元可以根据需要将相应的引脚设置成输入、输出或双向工作模式。
-![|300](photo/Pasted%20image%2020250604205432.png)
+![|300](assets/Pasted%20image%2020250604205432.png)
 **FPGA**：是在 PAL、 GAL 和 CPLD 等可编程逻辑器件的基础上进一步发展的产物，但是 FPGA 和其前辈CPLD 有着非常大的差异。
-![|460](photo/Pasted%20image%2020250604205754.png)
+![|460](assets/Pasted%20image%2020250604205754.png)
 FPGA 基本结构一般由六部分组成，
 1. 可编程输入/输出单元
 2. 基本可编程逻辑单元
@@ -74,7 +74,7 @@ FPGA 基本结构一般由六部分组成，
 #### 2.3FPGA 产业现状
 两巨头：赛灵思（Xilinx）、阿尔特拉（Altera），
 紧排其后：莱迪思（Lattice）和美高森美（Microsemi） 。
-![|420](photo/Pasted%20image%2020250604210205.png)
+![|420](assets/Pasted%20image%2020250604210205.png)
 国产FPGA厂商：紫光同创、安路科技、高云半导体、上海复旦微电子、成都华微电子、智多晶、易灵思和京微齐力
 
 ---
@@ -135,7 +135,7 @@ CPU 一般包括几种：
 
 **DSP:**
 DSP 其实是一种独特的 CPU，只是拥有自己的完整指令系统，是可以处理大量数字信号的器件。DSP 通常负责数字信号(视频、音频和其他的传感器获得的数字信号)处理，在日常生活中，常见的数字电视机机顶盒、 MP3、 MP4 和光模块等都广泛使用了 DSP。由于设计的专一化， DSP 可以在较低的成本下，执行比较复杂的编解码信号处理工作。
-![|660](photo/Pasted%20image%2020250604213702.png)
+![|660](assets/Pasted%20image%2020250604213702.png)
 CPU 具有比较强的事务管理功能，可以用来跑 UI 以及应用程序， CPU 优点主要在于擅长控制。
 DSP 主要是来做计算，例如加解密算法，调制解调等，其优势是强大的数据处理能力和较高的运行速度。
 FPGA 主要使用 Verilog 进行编程，灵活性强，并行处理度高，可编程，可以做到很高的带宽处理。

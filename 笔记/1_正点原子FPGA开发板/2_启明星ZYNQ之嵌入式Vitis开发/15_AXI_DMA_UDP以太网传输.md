@@ -23,8 +23,8 @@
 2. PL端接收到指令开始产生2048个32bit的数据，通过AXI DMA将数据传输到PS端的DDR3中；
 3. PS端将PS端的DDR的数据通过UDP传输给PC，用网口传输助手查看传输的数据。
 ## 三 、硬件设计
-![|660](photo/89338f549dbcc17c6aaefae0aa4b645.png)
-![](photo/Pasted%20image%2020250603011803.png)
+![|660](assets/89338f549dbcc17c6aaefae0aa4b645.png)
+![](assets/Pasted%20image%2020250603011803.png)
 ```verilog
 `timescale 1ns / 1ps
 
@@ -136,16 +136,16 @@ endmodule
 ```
 模块写好后直接添加进block design即可。
 #### 添加axis data fifo，并配置
-![](photo/Pasted%20image%2020250603101637.png)
+![](assets/Pasted%20image%2020250603101637.png)
 虽然引出了读数据计数引脚，但其实并未用到，可以关掉。
 #### axi dma 配置
-![](photo/Pasted%20image%2020250603101718.png)
+![](assets/Pasted%20image%2020250603101718.png)
 #### axi gpio配置
-![](photo/Pasted%20image%2020250603101804.png)
+![](assets/Pasted%20image%2020250603101804.png)
 按上述配置完之后自动布线，然后valite design、generate output products、create HDL wrapper，一切无误之后综合布线，生成bit流
 ## 四、软件设计
 参考：正点原子的教程《领航者ZYNQ之嵌入式Vitis开发指南v1_2》中的实验《 基于 OV5640 的 PS 以太网视频传输实验》软件设计部分，下面贴出修改的部分
-![|300](photo/Pasted%20image%2020250603104212.png)
+![|300](assets/Pasted%20image%2020250603104212.png)
 #### main.c
 ```c
 // Descriptions:        PS端网口传输OV5640摄像头视频在上位机显示
@@ -578,7 +578,7 @@ void start_application()
 #### 网口调试助手
 
 
-![](photo/Pasted%20image%2020250603103813.png)
+![](assets/Pasted%20image%2020250603103813.png)
 
 ## 六、本章总结
 
@@ -594,7 +594,7 @@ void start_application()
 
 ==问题：包掉落，无空间==
 pack dropped, no space
-![](photo/Pasted%20image%2020250527211701.png)
+![](assets/Pasted%20image%2020250527211701.png)
 ==不知道为啥，貌似不影响UDP传输==
 
 

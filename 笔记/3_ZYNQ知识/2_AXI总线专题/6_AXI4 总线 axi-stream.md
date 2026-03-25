@@ -7,53 +7,53 @@ AXI4-Stream 去掉了地址，允许无限制的数据突发传输规模，AXI4-
 ## 二、AXI4-Stream 协议介绍
 
 ### 2.1 信号定义
-![](photo/Pasted%20image%2020260204163826.png)
+![](assets/Pasted%20image%2020260204163826.png)
 
 ### 2.2 axi-stream 方案展示
 
 下图中除了 ACLK 外，axi-stream 的信号用到了，TVALID、TREADY、TLAST、TDATA。
 其中 TDATA 虽然是 12bit但是实际上会占用 16bit 的物理总线。
 并且数据是循环发送，用 TLAST 标识了一次循环的最后一个数据。
-![](photo/Pasted%20image%2020260204163855.png)
+![](assets/Pasted%20image%2020260204163855.png)
 
 下图中截图来自 AXI-DMA mm2s 接口的时序图，
 除了 ACLK 外，axi-stream 的信号用到了，TVALID、TREADY、TLAST、TDATA、TKEEP。
 用 TLAST 标识了一次循环的最后一个数据。
-![](photo/Pasted%20image%2020260204163924.png)
+![](assets/Pasted%20image%2020260204163924.png)
 
 下图中是来自于 xilinx vivado 自带的 axis_vid_out ip 的视频输出时序。
 EOL 就是 tlast ,SOF 就是 tuser 初次外还包括了 VALID、READY、DATA 信号。
-![](photo/Pasted%20image%2020260204163945.png)
+![](assets/Pasted%20image%2020260204163945.png)
 
 
 ## 三、创建 axi-stream-master 总线接口 IP
 
 
 创建例程
-![](photo/Pasted%20image%2020260204202845.png)
-![](photo/Pasted%20image%2020260204202910.png)
-![](photo/Pasted%20image%2020260204202928.png)
+![](assets/Pasted%20image%2020260204202845.png)
+![](assets/Pasted%20image%2020260204202910.png)
+![](assets/Pasted%20image%2020260204202928.png)
 
 ## 四、创建 axi-stream-slave 总线接口 IP
 
 用于完成 axi-steam 协议的验证
-![](photo/Pasted%20image%2020260204203050.png)
-![](photo/Pasted%20image%2020260204203234.png)
+![](assets/Pasted%20image%2020260204203050.png)
+![](assets/Pasted%20image%2020260204203234.png)
 
 ## 五、创建 FPGA 图像化设计
 
-![](photo/Pasted%20image%2020260204203338.png)
+![](assets/Pasted%20image%2020260204203338.png)
 设置 IP 路径
-![](photo/Pasted%20image%2020260204203451.png)
+![](assets/Pasted%20image%2020260204203451.png)
 添加已经创建好的 IP，并连线
-![](photo/Pasted%20image%2020260204203607.png)
-![](photo/Pasted%20image%2020260204204531.png)
+![](assets/Pasted%20image%2020260204203607.png)
+![](assets/Pasted%20image%2020260204204531.png)
 maxis 的 ip 参数设置
-![](photo/Pasted%20image%2020260204204730.png)
+![](assets/Pasted%20image%2020260204204730.png)
 saxis 的 ip 参数设置
-![](photo/Pasted%20image%2020260204204740.png)
+![](assets/Pasted%20image%2020260204204740.png)
 自动创建顶层文件
-![](photo/Pasted%20image%2020260204204915.png)
+![](assets/Pasted%20image%2020260204204915.png)
 
 
 
@@ -238,7 +238,7 @@ endmodule
 ```
 
 #### 2:Tcl Console 中输入reset_project 对工程 IP 复位
-![](photo/Pasted%20image%2020260204214314.png)
+![](assets/Pasted%20image%2020260204214314.png)
 
 #### 3:之后单击 Refresh IP Catalog
 
@@ -247,13 +247,13 @@ endmodule
 <font color="#ff0000">正确的流程应该是修改 IP 的源文件，然后重新生成输出产物</font>
 <font color="#ff0000">再IP源里修改</font>
 
-![](photo/Pasted%20image%2020260204215746.png)
+![](assets/Pasted%20image%2020260204215746.png)
 然后再操作
-![](photo/Pasted%20image%2020260204214314.png)
-![|540](photo/Pasted%20image%2020260204215754.png)
+![](assets/Pasted%20image%2020260204214314.png)
+![|540](assets/Pasted%20image%2020260204215754.png)
 
 最后单击 upgrade Selected 完成更新
-![](photo/Pasted%20image%2020260204220047.png)
+![](assets/Pasted%20image%2020260204220047.png)
 
 
 
@@ -390,7 +390,7 @@ endmodule
 
 
 ## 八、仿真结果
-![](photo/Pasted%20image%2020260204230847.png)
+![](assets/Pasted%20image%2020260204230847.png)
 
 
 
@@ -440,7 +440,7 @@ endmodule
 
 ### 3、AXI-Lite 配置 DMA 的典型寄存器
 
-![](photo/Pasted%20image%2020260205095001.png)
+![](assets/Pasted%20image%2020260205095001.png)
 
 
 ### 4、为什么Stream传输之前要有等待32个时钟周期呢

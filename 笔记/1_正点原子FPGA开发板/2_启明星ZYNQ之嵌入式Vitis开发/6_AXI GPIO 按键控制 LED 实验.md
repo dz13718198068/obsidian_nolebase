@@ -4,16 +4,16 @@ AXI GPIO
 文档查询
 
 block design中添加AXI GPIO IP核
-![|381](photo/Pasted%20image%2020250518125220.png)
+![|381](assets/Pasted%20image%2020250518125220.png)
 IP核的双击打开后的左上角有相关手册
-![|425](photo/Pasted%20image%2020250518125401.png)
-![|475](photo/Pasted%20image%2020250518130748.png)
+![|425](assets/Pasted%20image%2020250518125401.png)
+![|475](assets/Pasted%20image%2020250518130748.png)
 为AXI接口提供了一个通用的输入输出接口
 这是一个32bit的soft ip软核ip
 用于与AXI4 lite接口进行连接
 
 什么是软核IP?
-![|350](photo/Pasted%20image%2020250518132037.png)
+![|350](assets/Pasted%20image%2020250518132037.png)
 PS里的硬核GPIO是实实在在的有硬件电路的
 而AXI-GPIO在芯片里是没有现成电路的
 需要在PL端用逻辑搭一个GPIO硬件电路
@@ -23,9 +23,9 @@ PS里的硬核GPIO是实实在在的有硬件电路的
 在PL端搭建的GPIO通过AXI接口与PS连用
 
 PS-PL接口分为功能性接口和配置接口
-![|450](photo/Pasted%20image%2020250518132320.png)
+![|450](assets/Pasted%20image%2020250518132320.png)
 功能接口AXI互联又分为ACP、HP和GP接口
-![|425](photo/Pasted%20image%2020250518132458.png)
+![|425](assets/Pasted%20image%2020250518132458.png)
 AXI-GPIO使用的是AXI-GP接口
 
 
@@ -34,16 +34,16 @@ AXI-GPIO使用的是AXI-GP接口
 
 
 系统框图
-![|475](photo/Pasted%20image%2020250518125130.png)
+![|475](assets/Pasted%20image%2020250518125130.png)
 ==AXI 互联 IP==（ AXI Interconnect）用于连接==AXI存储器映射==（ memory-mapped）的主器件和从器件。
 通用中断控制器（ GIC） 用于管理来自 PS 或者 PL 的中断， 并把这些中断发送到 CPU。
-![|500](photo/Pasted%20image%2020250518134003.png)
-![|500](photo/Pasted%20image%2020250518134105.png)
+![|500](assets/Pasted%20image%2020250518134003.png)
+![|500](assets/Pasted%20image%2020250518134105.png)
 
 ---
 硬件设计
 添加ZYNQ_PS端IP。本次实验默认的这些接口都需要
-![|400](photo/Pasted%20image%2020250518134616.png)
+![|400](assets/Pasted%20image%2020250518134616.png)
 M_AXI_GP0：
 M_AXI_GP0_ACLK：AXI时钟信号
 FCLK_CLK0：PS端输出给PL的时钟信号
@@ -51,83 +51,83 @@ FCLK_RESET0_N：PS输出给PL的复位信号
 
 进入配置：
 配UART 0
-![|500](photo/Pasted%20image%2020250518135021.png)
+![|500](assets/Pasted%20image%2020250518135021.png)
 配DDR3
-![|500](photo/Pasted%20image%2020250518135105.png)
+![|500](assets/Pasted%20image%2020250518135105.png)
 配MIO（PS端的LED）（硬核）
-![|500](photo/Pasted%20image%2020250518135419.png)
+![|500](assets/Pasted%20image%2020250518135419.png)
 配置ZYNQ PS完成
 
 添加AXI-GPIO IP核并配置
 配置选项在pg114文档中有介绍
-![|250](photo/Pasted%20image%2020250518140358.png)
+![|250](assets/Pasted%20image%2020250518140358.png)
 提供了一个通用输入输出接口到AXI4-Lite接口
 可配置成单通道or双通道，每个通道可分别配置
 AXI-GPIO可通过使能or去使能三台缓冲器进行动态配置（三态缓冲器决定IO是输出or输入）
 当transition在输入引脚发生的时候可产生中断（transition：转换，电平状态改变）
 
-![|475](photo/Pasted%20image%2020250518140640.png)
+![|475](assets/Pasted%20image%2020250518140640.png)
 
 AXI-GPIO模块框图
 IP端口介绍：
-![|400](photo/Pasted%20image%2020250518141616.png)
-![|500](photo/Pasted%20image%2020250518143642.png)
-![|500](photo/Pasted%20image%2020250518143814.png)
-![|500](photo/Pasted%20image%2020250518144757.png)
-![|500](photo/Pasted%20image%2020250518145310.png)
+![|400](assets/Pasted%20image%2020250518141616.png)
+![|500](assets/Pasted%20image%2020250518143642.png)
+![|500](assets/Pasted%20image%2020250518143814.png)
+![|500](assets/Pasted%20image%2020250518144757.png)
+![|500](assets/Pasted%20image%2020250518145310.png)
 IP寄存器空间介绍
-![|500](photo/Pasted%20image%2020250518145715.png)
-![|500](photo/Pasted%20image%2020250518145920.png)
-![|500](photo/Pasted%20image%2020250518150114.png)
+![|500](assets/Pasted%20image%2020250518145715.png)
+![|500](assets/Pasted%20image%2020250518145920.png)
+![|500](assets/Pasted%20image%2020250518150114.png)
 中断功能
-![|500](photo/Pasted%20image%2020250518150228.png)
+![|500](assets/Pasted%20image%2020250518150228.png)
 编程顺序：
 
 使能中断
-![|500](photo/Pasted%20image%2020250518150851.png)
+![|500](assets/Pasted%20image%2020250518150851.png)
 不使用中断功能，配成输入
-![|500](photo/Pasted%20image%2020250518151046.png)
+![|500](assets/Pasted%20image%2020250518151046.png)
 配成输出
-![|500](photo/Pasted%20image%2020250518151146.png)
+![|500](assets/Pasted%20image%2020250518151146.png)
 
 ---
 IP核配置：
-![|475](photo/Pasted%20image%2020250518151955.png)
+![|475](assets/Pasted%20image%2020250518151955.png)
 模块自动连接+模块间自动连接
-![|400](photo/Pasted%20image%2020250518152617.png)
-![|400](photo/Pasted%20image%2020250518152658.png)
+![|400](assets/Pasted%20image%2020250518152617.png)
+![|400](assets/Pasted%20image%2020250518152658.png)
 工具帮我们自动添加了两个IP核
-![|675](photo/Pasted%20image%2020250518153108.png)
+![|675](assets/Pasted%20image%2020250518153108.png)
 - AXI Interconnect IP 核用于将一个（ 或多个） AXI 存储器映射的主器件连接到一个（ 或多个） 存储器映射的从器件。 在这里我们解释一下这个术语——==互联==（ Interconnect）： 互联实际上是一个==开关==，它==管理并指挥所连接的 AXI 接口之间的通信==。 图中橙色高亮的两组信号线表明， 在这个设计中， AXI 互联实现了由主器件（ ZYNQ7 PS）到从器件（ AXI GPIO）==一对一==的连接。它也可实现==一对多==、==多对一==以及==多对多==的 AXI 接口连接。
-![|725](photo/Pasted%20image%2020250518153741.png)
+![|725](assets/Pasted%20image%2020250518153741.png)
 - Processor System Reset IP 核==为整个处理器系统提供复位信号==。它会==处理==输入端的==各种复位条件==，并在==输出==端产生相应的==复位信号==。 在本次实验中， Processor System Reset 接收 ZYNQ7 PS 输出的异步复位信号FCLK_RESET0_N， 然后产生一个同步到 PL 时钟源 FCLK_CLK0 的复位信号 peripheral_aresetn，用于复位PL 端的各外设模块
 
 时钟信号:
-![](photo/Pasted%20image%2020250518153835.png)
-![|500](photo/Pasted%20image%2020250518154146.png)
+![](assets/Pasted%20image%2020250518153835.png)
+![|500](assets/Pasted%20image%2020250518154146.png)
 PL 端所有外设模块的时钟接口都连接到了 ZYNQ7 PS 输出的时钟信号FCLK_CLK0 上(50Hz)
 该时钟同样连接到了 PS 端 M_AXI_GP0_ACLK 端口，作为 AXI GP 接口的全局时钟信号
 
 ZYNQ7 PS 模块中也要打开中断功能，打开从PL到PS的中断信号
-![|500](photo/Pasted%20image%2020250518154347.png)
+![|500](assets/Pasted%20image%2020250518154347.png)
 ZYNQ7 PS 模块的中断接口 IRQ_F2P 没有自动连接， 需要手动连接
-![|650](photo/Pasted%20image%2020250518154527.png)
+![|650](assets/Pasted%20image%2020250518154527.png)
 将连接到PL端的端口改名，方便PL端使用
-![|500](photo/Pasted%20image%2020250518154645.png)
+![|500](assets/Pasted%20image%2020250518154645.png)
 封装之后看代码发现系统会自动帮我们创建三态缓冲器
-![|325](photo/Pasted%20image%2020250518155249.png)
-![|625](photo/Pasted%20image%2020250518155232.png)
+![|325](assets/Pasted%20image%2020250518155249.png)
+![|625](assets/Pasted%20image%2020250518155232.png)
 分配引脚，PL按键
-![|500](photo/Pasted%20image%2020250518155516.png)
+![|500](assets/Pasted%20image%2020250518155516.png)
 生成bit流
 导出到SDK
 
 ---
 软件部分
 新建空例程后板级支持包里支持axi-gpio
-![|575](photo/Pasted%20image%2020250518160121.png)
+![|575](assets/Pasted%20image%2020250518160121.png)
 导入中断模式示例
-![|550](photo/Pasted%20image%2020250518163756.png)
+![|550](assets/Pasted%20image%2020250518163756.png)
 按照示例编写代码
 
 
@@ -135,17 +135,17 @@ AXI-GPIO中断号
 AXI-GPIO实际是PL到PS的中断
 一共16个中断ID
 只使用了1个，中断号就是61
-![|425](photo/Pasted%20image%2020250518180048.png)
+![|425](assets/Pasted%20image%2020250518180048.png)
 ZYNQ_PS配置也能看到中断号
-![|450](photo/Pasted%20image%2020250518180220.png)
+![|450](assets/Pasted%20image%2020250518180220.png)
 中断类型：高有效
-![|475](photo/Pasted%20image%2020250518195555.png)
-![|475](photo/Pasted%20image%2020250518195714.png)
+![|475](assets/Pasted%20image%2020250518195555.png)
+![|475](assets/Pasted%20image%2020250518195714.png)
 按下亮，释放灭
 按一次按键中断两次（按下+释放）：是因为电平变化检测到中断
 现象与预期不符
 看编程顺序，还需要读一下状态
-![|500](photo/Pasted%20image%2020250518202526.png)
+![|500](assets/Pasted%20image%2020250518202526.png)
 加个读判断就可以了，虽然还是两次中断，但是led改变状态
 
 

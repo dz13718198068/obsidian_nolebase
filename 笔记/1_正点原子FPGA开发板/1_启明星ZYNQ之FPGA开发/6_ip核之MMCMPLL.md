@@ -18,7 +18,7 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 接着我们讲一下 PLL 的工作原理，首先我们画出一个大致的结构模型示意图，如下图所示：
 
-![|500](photo/Pasted%20image%2020260127102004.png)
+![|500](assets/Pasted%20image%2020260127102004.png)
 由上图可以看出 PLL 的工作流程如下：
 
 1、通过 PFD(全称：Phase-Frequency Detector，即鉴频鉴相器)对参考时钟（ref_clk）频率和需要比较的时钟频率（即上图中的输出时钟：pll_out）进行对比。
@@ -31,7 +31,7 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 这里我们用一个简单的生活行为来带大家理解一下锁相环的工作流程，我们使用驾驶车辆举例：
 
-![|500](photo/Pasted%20image%2020260127102052.png)
+![|500](assets/Pasted%20image%2020260127102052.png)
 
 参考时钟可以类比为道路的方向，需要比较的时钟可以类比为汽车的行驶方向，人眼就是鉴频鉴相器，大脑就相当于滤波器，方向盘就相当于 VCO。人眼检测道路方向和行驶方向是否有偏差，大脑对方向偏差做出判断（偏左、偏右或无偏差），并将判断结果转换为方向盘的动作（左打、右打或不变），然后将调整后的行驶方向与道路方向再次通过人眼进行对比，经过反复的对比和调整后，最终使得行驶方向与道路方向一致。
 
@@ -39,17 +39,17 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 **PLL 分频原理图如下图所示：**
 
-![|500](photo/Pasted%20image%2020260127102135.png)
+![|500](assets/Pasted%20image%2020260127102135.png)
 
 分频是在参考时钟与 PFD 之间加入一级分频器（可称为前置分频器），通过前置分频器 N(N 表示数字)分频后得到一个新的参考时钟，因此需要比较的时钟频率（即 pll_out）就始终是和新的参考时钟频率进行对比的，pll_out 的输出结果也会逐渐与新的参考时钟(ref_clk / N)相等，从而实现了分频的功能。
 
 **PLL 倍频原理图如下图所示：**
 
-![|500](photo/Pasted%20image%2020260127102208.png)
+![|500](assets/Pasted%20image%2020260127102208.png)
 倍频是在 VCO 与 PFD 之间加入一级分频器（可称为后置分频器），通过后置分频器 M(M 表示数字)分频后得到一个新的需要比较的时钟频率（即 pll_out 分频后的时钟），因为此时与参考时钟频率进行对比的是分频后的输出时钟（pll_out/M），所以此时的输出时钟是参考时钟的 M 倍（pll_out = ref_clk * M），从而实现了倍频的功能。
 
 需要注意的是，一个PLL IP核输出的时钟路数是有上限的，且输入/输出的时钟频率也是有范围限制的，我们不能无限制的输入无穷大/小的时钟频率，也不可能通过倍频或分频输出无穷大/小的时钟频率。这里我们总结了一下几款常用芯片的相关信息，如下表所示：
-![|460](photo/Pasted%20image%2020260127102313.png)
+![|460](assets/Pasted%20image%2020260127102313.png)
 
 
 
@@ -58,8 +58,8 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 ### 二、PLL IP 核配置
 
-![|460](photo/Pasted%20image%2020260127104011.png)
-![|380](photo/Pasted%20image%2020260127104101.png)
+![|460](assets/Pasted%20image%2020260127104011.png)
+![|380](assets/Pasted%20image%2020260127104101.png)
 
 **PLL IP 的工具栏如下图所示**
 
@@ -70,11 +70,11 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 - 3）Product Webpage：是 IP 相关介绍的网页版，点击可跳转到如下图所示的 Xilinx 官方有关该 IP 介绍的网站
 - 4）Answer Records：是与 IP 相关的 Xilinx 官方疑问解答记录网页，点击可跳转到如下图所示的网页。
 
-![|380](photo/Pasted%20image%2020260127104131.png)
+![|380](assets/Pasted%20image%2020260127104131.png)
 
 2：IP Location：设置 IP 的存放路径，点击“IP Location”出现如下图所示窗口，在窗口里可以通过点击“…”更换存放路径，默认是存放在工程路径下的…<工程名>.srcs\sources_1\ip，这里我们就保持默认
 
-![|420](photo/Pasted%20image%2020260127104444.png)
+![|420](assets/Pasted%20image%2020260127104444.png)
 3：Switch to Default：点击后所有的设置恢复到默认值。
 
 
@@ -112,7 +112,7 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 3. “Global buffer（全局缓冲器）”，输入时钟只要在全局时钟网络上，就需要选择这个。例如前一个PLL IP 核的输出时钟接到后一个 PLL IP 核的输入时，只要前一个 PLL 输出的时钟不是“No buffer”类型即可。
 4. “No buffer（无缓冲器）”，输入时钟必须经过全局时钟缓冲器（BUFG），才可以选择这个。例如前一个 PLL IP 核的输出时钟接到后一个 PLL IP 核的输入时，前一个 PLL 输出的时钟必须为 BUFG 或者BUFGCE 类型才可以。
 
-![|460](photo/Pasted%20image%2020260127104626.png)
+![|460](assets/Pasted%20image%2020260127104626.png)
 
 #### **“Output Clocks”选项卡**：
 
@@ -147,18 +147,18 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 （5）、Reset Type（复位类型），用于设置复位信号是高电平有效还是低电平有效，这里我们可以保持默认的高电平有效。
 
-![|420](photo/Pasted%20image%2020260127105225.png)
+![|420](assets/Pasted%20image%2020260127105225.png)
 
 #### **“Port Renaming”选项卡**
 
 “Port Renaming”选项卡主要是对一些控制信号（复位信号以外的信号）的重命名。在上一个选项卡中我们启用了锁定信号 locked，因此这里我们只看到了 locked 这一个可以重命名的信号，因为默认的名称已经可以让我们一眼看出该信号的含义，所以无需重命名，保持默认即可。
 
-![|380](photo/Pasted%20image%2020260127105633.png)
+![|380](assets/Pasted%20image%2020260127105633.png)
 
 #### **“MMCM Setting”选项卡**
 展示了对整个 PLL 的最终配置参数，这些参数都是由 Vivado 根据之前用户输入的时钟需求来自动配置的，Vivado 已经对参数进行了最优的配置，在绝大多数情况下都不需要用户对它们进行更改，也不建议更改，所以这一步保持默认即可，如下图所示
 
-![|340](photo/Pasted%20image%2020260127105721.png)
+![|340](assets/Pasted%20image%2020260127105721.png)
 
 #### **“Summary”选项卡**
 是对前面所有配置的一个总结，
@@ -175,7 +175,7 @@ Xilinx7 系列器件中的时钟资源包含了时钟管理单元 CMT（全称 C
 
 
 时钟管理单元 CMT 体框图
-![|540](photo/Pasted%20image%2020250526075216.png)
+![|540](assets/Pasted%20image%2020250526075216.png)
 
 MMCM/PLL 的参考时钟可输入：
 IBUFG(CC)即具有时钟能力的 IO 输入 （最常用）
@@ -187,10 +187,10 @@ GT 收发器输出时钟
 MMCM/PLL 的输出可以驱动全局时钟 BUFG 和行时钟 BUFH 等等。 BUFG 能够驱动整个器件内部的PL 侧通用逻辑的所有时序单元的时钟端口。
 
 BUFG/BUFH/CMT 在一个时钟区域内的连接框图如下图所示
-![|500](photo/Pasted%20image%2020250526080729.png)
+![|500](assets/Pasted%20image%2020250526080729.png)
 MMCM 和 PLL 的总体框图如下图所示。
-![|500](photo/Pasted%20image%2020250526080734.png)
-![|500](photo/Pasted%20image%2020250526080737.png)
+![|500](assets/Pasted%20image%2020250526080734.png)
+![|500](assets/Pasted%20image%2020250526080737.png)
 
 MMCM 的功能是 PLL 的超集，其具有比 PLL 更强大的相移功能。
 l MMCM 主要用于驱动器件逻辑（CLB、 DSP、 RAM 等）的时钟。
@@ -214,14 +214,14 @@ l Input Clock Information :输入频率（即板卡晶振频率50M）
 3. ”Port Renaming”选项卡 ：控制信号重命名
 4. “MMCM Setting”选项卡 ： 展示整个 MMCM/PLL 的最终配置参数
 5. “Summary”选项卡:是对前面所有配置的一个总结，
-![|500](photo/Pasted%20image%2020250526080812.png)
-![|460](photo/Pasted%20image%2020250529134442.png)
+![|500](assets/Pasted%20image%2020250526080812.png)
+![|460](assets/Pasted%20image%2020250529134442.png)
 综合独立于顶层设计。在Out-of-Context Module Runs” 窗口中显示
-![|500](photo/Pasted%20image%2020250526080819.png)
+![|500](assets/Pasted%20image%2020250526080819.png)
 系统是低电平复位，ip核是高电平复位，此处需取反
-![|500](photo/Pasted%20image%2020250526080824.png)
+![|500](assets/Pasted%20image%2020250526080824.png)
 Locked拉高以后表示输出稳定了，时钟锁定了，可以使用了
-![](photo/Pasted%20image%2020250526080827.png)
+![](assets/Pasted%20image%2020250526080827.png)
 上板测试，示波器抓波形
-![](photo/Pasted%20image%2020250526080830.png)
-![](photo/Pasted%20image%2020250526080833.png)
+![](assets/Pasted%20image%2020250526080830.png)
+![](assets/Pasted%20image%2020250526080833.png)

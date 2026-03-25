@@ -6,7 +6,7 @@
 
 
 ##### 一、硬件设计
-![](photo/Pasted%20image%2020250528172320.png)
+![](assets/Pasted%20image%2020250528172320.png)
 FPGA生成sin函数是非常复杂的。verilog生成DA_DATA【7:0】很复杂
 通过软件将正弦波，转换成数字量，生成coe文件，储存到ROM中，输出正弦波
 当然也可以直接接示波器或信号发生器
@@ -16,33 +16,33 @@ FPGA生成sin函数是非常复杂的。verilog生成DA_DATA【7:0】很复杂
 使用WaveToMem生成正弦信号coe文件
 8位位宽：对应8位数模转换
 深度256：对应fifo ip核的深度
-![|540](photo/Pasted%20image%2020250528172737.png)
+![|540](assets/Pasted%20image%2020250528172737.png)
 生成coe文件
-![|500](photo/Pasted%20image%2020250528172816.png)
+![|500](assets/Pasted%20image%2020250528172816.png)
 这个文件可以直接加载到ROM IP核中。
 
 ROM IP核配置
-![|540](photo/Pasted%20image%2020250528221855.png)
-![|540](photo/Pasted%20image%2020250528221915.png)
-![|540](photo/Pasted%20image%2020250528221930.png)
+![|540](assets/Pasted%20image%2020250528221855.png)
+![|540](assets/Pasted%20image%2020250528221915.png)
+![|540](assets/Pasted%20image%2020250528221930.png)
 
 
 ila ip核配置
-![|540](photo/Pasted%20image%2020250528222044.png)
-![|540](photo/Pasted%20image%2020250528222054.png)
+![|540](assets/Pasted%20image%2020250528222044.png)
+![|540](assets/Pasted%20image%2020250528222054.png)
 
 ##### 三、上板测试结果
 DA模拟输出接示波器
-![](photo/bb2857984f6eeec55a9d73c491ac089.jpg)
-![](photo/f17ce08e9c51e852acf2e3da707c4eb.jpg)
+![](assets/bb2857984f6eeec55a9d73c491ac089.jpg)
+![](assets/f17ce08e9c51e852acf2e3da707c4eb.jpg)
 DA接AD，ila抓接收端数据
-![](photo/Pasted%20image%2020250528222810.png)
-![](photo/509f0ea2e9541b3890588643ef0aee6%201.jpg)
-![](photo/5afc7ec6f5e00f5a2f4a85446bdbaf0.png)
+![](assets/Pasted%20image%2020250528222810.png)
+![](assets/509f0ea2e9541b3890588643ef0aee6%201.jpg)
+![](assets/5afc7ec6f5e00f5a2f4a85446bdbaf0.png)
 
 ##### 四、顶层设计
-![|500](photo/Pasted%20image%2020250528222114.png)
-![|580](photo/Pasted%20image%2020250528222415.png)
+![|500](assets/Pasted%20image%2020250528222114.png)
+![|580](assets/Pasted%20image%2020250528222415.png)
 FPGA 顶层模块（hs_ad_da） 例化了以下三个模块： 
 - DA 数据发送模块（da_wave_send） ： DA 数据发送模块输出读 ROM 地址， 将输入的 ROM 数据发送至DA 转换芯片的数据端口。
 - ROM 波形存储模块（rom_256x8b）： ROM 波形存储模块由 Vivado 软件自带的 Block Memory Generator IP 核实现， 其存储的波形数据可以使用波形转存储文件的上位机来生成.coe 文件。

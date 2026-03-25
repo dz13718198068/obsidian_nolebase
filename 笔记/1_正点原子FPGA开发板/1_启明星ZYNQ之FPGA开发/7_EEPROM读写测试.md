@@ -1,11 +1,11 @@
 EEPROM：非易失性存储器。断电保存数据，支持改写
 
 开发板板载了AT24C64芯片
-![|500](photo/Pasted%20image%2020250516173856.png)
+![|500](assets/Pasted%20image%2020250516173856.png)
 
 
 硬件设计
-![|500](photo/Pasted%20image%2020250516174012.png)
+![|500](assets/Pasted%20image%2020250516174012.png)
 
 AT24C64芯片数据手册阅读笔记：
 特性：
@@ -19,36 +19,36 @@ AT24C64芯片数据手册阅读笔记：
 写周期最大==10ms==
 读写次数100万次，保留100年
 封装（硬件工程师关心）
-![|500](photo/Pasted%20image%2020250516174436.png)
+![|500](assets/Pasted%20image%2020250516174436.png)
 描述
 8192字节x8 = 64kbit
 65536位
 非易失性
 最大支持8颗同时挂载到iic接口
-![|650](photo/Pasted%20image%2020250516182459.png)
+![|650](assets/Pasted%20image%2020250516182459.png)
 芯片不同封装的引脚
 A0-A2是地址配置
 SDA：串行数据线
 SCL：串行时钟输入线
 WP：写保护
-![](photo/Pasted%20image%2020250516182813.png)
+![](assets/Pasted%20image%2020250516182813.png)
 框图
-![](photo/Pasted%20image%2020250516182910.png)
+![](assets/Pasted%20image%2020250516182910.png)
 引脚介绍：
 SCL：上升沿将数据写到EEPROM里，下降沿从EEPROM输出数据
 SDA：双向，分时复用
 A2A1A0：改变器件地址。默认接地
 WP：写保护。接GND允许操作。接VCC后写保护，无法往EEPROM里写数据
-![](photo/Pasted%20image%2020250516183007.png)
+![](assets/Pasted%20image%2020250516183007.png)
 内部结构
 256页
 每页32字节
 共8k字节
 64kbit
 随机字地址范围12对应AT24C32，13对应AT24C64（字节地址总共13位）
-![](photo/Pasted%20image%2020250516183247.png)
+![](assets/Pasted%20image%2020250516183247.png)
 其他参数，影响时序
-![](photo/Pasted%20image%2020250516183516.png)
+![](assets/Pasted%20image%2020250516183516.png)
 
 IIC通信协议
 集成电路总线，两线式串行总线，半双工。适用于主从通信，支持一主多从。
@@ -69,22 +69,22 @@ IIC通信协议
 待机模式：stop后会进入待机模式，节省功耗
 
 存储器复位：掉电后可按照指定操作对存储器复位
-![|700](photo/Pasted%20image%2020250516185935.png)
+![|700](assets/Pasted%20image%2020250516185935.png)
 
 IIC通信时序图
 标注的时间，前面表格里描述了参数
-![|725](photo/Pasted%20image%2020250516190305.png)
+![|725](assets/Pasted%20image%2020250516190305.png)
 
 写周期时序图
-![](photo/Pasted%20image%2020250516190729.png)
+![](assets/Pasted%20image%2020250516190729.png)
 
 数据有效，数据需要在SCL为低电平时改变
-![](photo/Pasted%20image%2020250516190951.png)
+![](assets/Pasted%20image%2020250516190951.png)
 
 开始和结束的时序
-![](photo/Pasted%20image%2020250516190913.png)
+![](assets/Pasted%20image%2020250516190913.png)
 输出应答位
-![](photo/Pasted%20image%2020250516191107.png)
+![](assets/Pasted%20image%2020250516191107.png)
 
 器件地址
 前4位是0和1的序列，是固定值
@@ -92,8 +92,8 @@ IIC通信时序图
 第8位表示当前操作是读还是写
 
 
-![](photo/Pasted%20image%2020250516191437.png)
-![](photo/Pasted%20image%2020250516191542.png)
+![](assets/Pasted%20image%2020250516191437.png)
+![](assets/Pasted%20image%2020250516191542.png)
 
 
 写操作
@@ -102,29 +102,29 @@ IIC通信时序图
 页写：最大支持32字节页写。写完以后不发送停止位，继续发数据。写一字节以后低5位（共32位）会自动累加。
 
 
-![](photo/Pasted%20image%2020250516191709.png)
-![|775](photo/Pasted%20image%2020250516191842.png)
-![](photo/Pasted%20image%2020250516192459.png)
+![](assets/Pasted%20image%2020250516191709.png)
+![|775](assets/Pasted%20image%2020250516191842.png)
+![](assets/Pasted%20image%2020250516192459.png)
 
 当前地址读
 读一次以后，字节地址计数器会自动增加。==读到最后一页最后一个字节，会跳转到第一页的第一个字节。（写的话只会在当前页地址循环）==
 一共256页，一页32个
-![](photo/Pasted%20image%2020250516193256.png)
-![](photo/Pasted%20image%2020250516193848.png)
+![](assets/Pasted%20image%2020250516193256.png)
+![](assets/Pasted%20image%2020250516193848.png)
 随机地址读
 先执行“哑写”操作，“哑写”为的是改变地址计数器，然后stop
 再进行读操作。
-![](photo/Snipaste_2025-05-16_19-38-54.png)
+![](assets/Snipaste_2025-05-16_19-38-54.png)
 
 连续读操作
-![](photo/Pasted%20image%2020250516194003.png)
+![](assets/Pasted%20image%2020250516194003.png)
 
 
 IIC是如何实现一根线复用的
 定义端口线时定义成inout端口
 
-![](photo/Pasted%20image%2020250516203926.png)
-![](photo/Pasted%20image%2020250516203904.png)
+![](assets/Pasted%20image%2020250516203926.png)
+![](assets/Pasted%20image%2020250516203904.png)
 sda_dir置1时，sda_out直接驱动sda
 sda_dir置0时，sda_out高阻态，相当于断开，sda_in当作输入来使用
 

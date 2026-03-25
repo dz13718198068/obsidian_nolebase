@@ -36,15 +36,15 @@ AXI4-ST：只有一个单一数据通道，和AXI4的写数据通道比较类似
 AXI InterConnect和AXI SmartConnect
 
 这两个IP核都用连接单/多个存储器映射的AXI Master和单/多个存储器映射的AXI Slave
-![](photo/Pasted%20image%2020250526083901.png)
-![](photo/Pasted%20image%2020250526083904.png)
-![](photo/Pasted%20image%2020250526083906.png)
-![](photo/Pasted%20image%2020250526083909.png)
+![](assets/Pasted%20image%2020250526083901.png)
+![](assets/Pasted%20image%2020250526083904.png)
+![](assets/Pasted%20image%2020250526083906.png)
+![](assets/Pasted%20image%2020250526083909.png)
 
 
 信号的描述
 信号在全局时钟上升沿采样，复位信号低电平有效
-![|500](photo/Pasted%20image%2020250517150356.png)
+![|500](assets/Pasted%20image%2020250517150356.png)
 写地址通道信号： 
 AWID
 ==AWADDR==：写地址，起始地址
@@ -59,7 +59,7 @@ AWREGION：区域ID
 AWUSER：用户自定义信号
 ==AWVALID==：握手机制，master发出，当前数据有效
 ==AWREADY==：握手机制，slave发出，当前从机是否准备好接收数据
-![|525](photo/Pasted%20image%2020250517150413.png)
+![|525](assets/Pasted%20image%2020250517150413.png)
 写数据通道信号：
 WID：
 ==WDATA==：写入数据
@@ -68,7 +68,7 @@ WID：
 WUSER：用户自定义信号
 ==WVALID==：握手机制。master发出，当前数据有效
 ==WREADY==：握手机制。slave发出，当前从机是否准备好接收数据
-![|475](photo/Pasted%20image%2020250517150425.png)
+![|475](assets/Pasted%20image%2020250517150425.png)
 写响应通道信号：
 BID：
 ==BRESP==：写传输状态，从机发给主机
@@ -76,7 +76,7 @@ BID：
 BUSER：
 ==BVALID==：slave发出。
 ==BREADY==：master发出。
-![|500](photo/Pasted%20image%2020250517152602.png)
+![|500](assets/Pasted%20image%2020250517152602.png)
 读地址通道信号：
 ARID：
 ==ARADDR==：读地址
@@ -91,7 +91,7 @@ ARREGION：区域ID
 ARUSER：自定义信息
 ==ARVALID==：握手机制。
 ==ARREADY==：握手机制。
-![](photo/Pasted%20image%2020250517152740.png)
+![](assets/Pasted%20image%2020250517152740.png)
 读操作通道：
 RID：
 ==RDATA==：读数据
@@ -107,23 +107,23 @@ RUSER：
 
 时钟：使用全局时钟ACLK，上升沿采样
 复位：
-![](photo/Pasted%20image%2020250517153632.png)
+![](assets/Pasted%20image%2020250517153632.png)
 
 
-![|425](photo/Pasted%20image%2020250517154737.png)
+![|425](assets/Pasted%20image%2020250517154737.png)
 握手处理：
 五个通道使用相同的VALID/READY握手处理来传输地址、数据和控制信息
 双向流程控制机制意味着master和slave都可以控制传输速率
 源端产生VALID表示地址、数据和控制信息何时有效
 目的端产生READY表示当前可以接收信息
 ==传输只有在VALID和READY同时高电平时才会发生==
-![|500](photo/Pasted%20image%2020250517154508.png)
-![|500](photo/Pasted%20image%2020250517154630.png)
-![|500](photo/Pasted%20image%2020250517155311.png)
+![|500](assets/Pasted%20image%2020250517154508.png)
+![|500](assets/Pasted%20image%2020250517154630.png)
+![|500](assets/Pasted%20image%2020250517155311.png)
 写地址通道：
 当地址和控制信息有效时，主机才能拉高AWVALID信号
 当AWVALID信号拉高之后，要保持不变直到下一个时钟上升沿
-![](photo/Pasted%20image%2020250517155340.png)
+![](assets/Pasted%20image%2020250517155340.png)
  写/读响应READY应跟在VALID后面
 
 
@@ -134,14 +134,14 @@ AXI4-Lite介绍
 数据位宽32or64
 五缓存
 不支持独占式访问
-![|425](photo/Pasted%20image%2020250517162231.png)
+![|425](assets/Pasted%20image%2020250517162231.png)
 接口较少
-![|475](photo/Pasted%20image%2020250517162301.png)
+![|475](assets/Pasted%20image%2020250517162301.png)
 
 
 时序图：
-![|525](photo/Pasted%20image%2020250517162458.png)
-![|525](photo/Pasted%20image%2020250517162649.png)
+![|525](assets/Pasted%20image%2020250517162458.png)
+![|525](assets/Pasted%20image%2020250517162649.png)
 
 
 
