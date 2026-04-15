@@ -1,4 +1,4 @@
-![|315](assets/Pasted-image-20250604110721.png)
+
 - [display_ctrl](03_AD9208_DMA_VDMA_HDMI(源码参考).md#display_ctrl)
 	- [display_ctrl.c](03_AD9208_DMA_VDMA_HDMI(源码参考).md#display_ctrl#display_ctrl.c)
 	- [display_ctrl.h](03_AD9208_DMA_VDMA_HDMI(源码参考).md#display_ctrl#display_ctrl.h)
@@ -15,7 +15,7 @@
 - [display_demo.h](03_AD9208_DMA_VDMA_HDMI(源码参考).md#display_demo.h)
 - [main.c](03_AD9208_DMA_VDMA_HDMI(源码参考).md#main.c)
 
-
+![|315](assets/Pasted-image-20250604110721.png)
 ##### display_ctrl
 ###### display_ctrl.c
 ```c
