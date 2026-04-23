@@ -7,8 +7,8 @@
 ###### 1.基于VDMA驱动HDMI显示例程
 基于例程：
 [01_使用VDMA驱动HDMI](01_使用VDMA驱动HDMI.md)
-[10_ADDA实验ADDA原理](../../1_FPGA学习入门/1_启明星ZYNQ之FPGA开发/10_ADDA实验ADDA原理.md)
-[11_ADDA实验程序设计](../../1_FPGA学习入门/1_启明星ZYNQ之FPGA开发/11_ADDA实验程序设计.md)
+[10_ADDA实验ADDA原理](../../1_FPGA学习入门/6_启明星ZYNQ之FPGA开发/10_ADDA实验ADDA原理.md)
+[11_ADDA实验程序设计](../../1_FPGA学习入门/6_启明星ZYNQ之FPGA开发/11_ADDA实验程序设计.md)
 
 - DA(AD9708)驱动时钟,最大支持 125Mhz 时钟
 - AD(AD9280)驱动时钟,最大支持 32Mhz 时钟
