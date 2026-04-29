@@ -1,0 +1,2 @@
+Vectors are used to group related signals using one name to make it more convenient to manipulate. For example, wire [7:0] w; declares an 8-bit vector named w that is functionally equivalent to having 8 separate wires.
+向量用于通过一个名称对相关信号进行分组，以更方便地对其进行操作。例如，`wire [7:0] w;` 声明了一个名为 w 的 8 位向量，其功能等同于拥有 8 根独立的导线。
