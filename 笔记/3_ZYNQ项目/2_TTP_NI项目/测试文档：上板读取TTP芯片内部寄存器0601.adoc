@@ -1,0 +1,40 @@
+20260601 +
+进行读操作，上板测试ttp，读取0x35看是否能读到ID号 +
+创建一个上电100s以后自动驱动0x35地址的工程
+
+引脚分配过程中遇到问题 +
+引脚约束的时候，rst++_++n是ADLIB：CLKBUF，约束不到N7上面 +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601145240638.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601145240638] +
+原因和解决方法： +
+软件认为rst++_++n信号需要连接到设计中的大量寄存器。意味着它需要驱动数量巨大的负载，即“高扇出”。 +
+Global
+Network的驱动能力很强，信号延迟和便宜较小，为了处理rst++_++n的高扇出的问题，工具会自动将rst++_++n提升到全局网络。 +
+解决办法，在代码中加入备注，可修改为普通布线
+
+[source,language-verilog]
+----
+input rst_n /* synthesis syn_noclockbuf = 1 */;
+----
+
+普通布局布线可引脚分配为N7 +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601150213638.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601150213638]
+
+上板测试，启动程序100s以后读ttp芯片 +
+时序问题很大，且读出来的数据0xFEFF，不是期望数据0x0003 +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601153453127.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601153453127]
+
+修改代码继续测试： +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601181723574.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601181723574] +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601180349269.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601180349269] +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601181617304.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601181617304] +
+034地址抓到FE6F，预期应该是0x0003 +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601190452032.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601190452032] +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601190402214.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601190402214] +
+035地址抓到FFF7，预期应该是0x0205 +
+这两个地址读到的数据不符合预期 +
+image:E:\Notes_Hub\ZYNQ\assets\Pasted-image-20260601190549693.png[E:++\++Notes++_++Hub++\++ZYNQ++\++assets++\++Pasted-image-20260601190549693] +
+上图的地址不符合12位地址线，无法读到0x3FFFF
+
+目前问题： +
+一、读034、035抓到的数不符合预期 +
+二、0x3FFF读不了，地址线超过12位

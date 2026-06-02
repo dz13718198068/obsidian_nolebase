@@ -86,6 +86,8 @@ TAP控制器进入边界扫描模式时，DR链可以遍历每个IO块或者读�
 
 **下电时的操作流程顺序：**
 
+<font color="#ff0000">0、断开软件连接</font>
+
 <font color="#ff0000">- 1.断开FPGA开发板及相关设备的电源；</font>
     
 <font color="#ff0000">- 2.断开USB Blaster或者ByteBlasterII的电缆；</font>

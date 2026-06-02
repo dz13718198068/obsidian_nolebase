@@ -112,34 +112,6 @@ sample and trigger是既观察，又可作为触发的条件
 
 
 点击Identify Debug Design理论来说就可以进行在线调试了，
-但是这里遇到一个问题，需要绕路来结局
-
-**Libero 11.9 在Program Device时报错**
-![](assets/Pasted-image-20260422214356038.png)
-![](assets/Pasted-image-20260422214403678.png)
-
-出错原因：
-工程目录目录下生成的.pro文件是有问题的。
-![](assets/Pasted-image-20260422214521001.png)
-
-如何解决：
-思路：生成正确的.pro文件，替换调因软件bud导致的默认目录里的.pro文件
-
-**解决方法：**
-打开flash pro
-![](assets/Pasted-image-20260422214725496.png)
-在flashpro里创建一个新的文件夹，点击_File-New Project_，并在这个新的文件夹里生成一个pro文件
-![](assets/Pasted-image-20260422214853013.png)
-![](assets/Pasted-image-20260422214919832.png)
-
-然后点击_Configuration-Load Programming File_，impl1文件夹下想调用的.pdb文件：
-
-![](assets/Pasted-image-20260422215001182.png)
-![](assets/Pasted-image-20260422215124830.png)
-这样就会在20220422这个文件夹里生成一个正确的
-<font color="#ff0000">FlashPro文件 和 .pro文件，把这两个文件复制到工程的文件夹里，替换掉（此时一定要提前关闭Flashpro）</font>
-![](assets/Pasted-image-20260422215329524.png)
-![](assets/Pasted-image-20260422215449135.png)
 
 完成以上操作以后就可以Identify Debug Design了
 ![](assets/Pasted-image-20260422215511862.png)
@@ -158,11 +130,26 @@ sample and trigger是既观察，又可作为触发的条件
 
 
 
+# 五、LIbero使用过程中遇到的各种问题
+## 改完代码以后，引脚分配端口未变更
+![](assets/Pasted-image-20260508104205098.png)
+需要点击
+![](assets/Pasted-image-20260508144019609.png)
 
 
-
-
-
+## 引脚分配为CLKBUF
+引脚分配过程中遇到问题
+引脚约束的时候，rst_n是ADLIB：CLKBUF，约束不到N7上面
+![](assets/Pasted-image-20260601145240638.png)
+原因和解决方法：
+软件认为rst_n信号需要连接到设计中的大量寄存器。意味着它需要驱动数量巨大的负载，即“高扇出”。
+Global Network的驱动能力很强，信号延迟和便宜较小，为了处理rst_n的高扇出的问题，工具会自动将rst_n提升到全局网络。
+解决办法，在代码中加入备注，可修改为普通布线
+```verilog
+input rst_n /* synthesis syn_noclockbuf = 1 */;
+```
+普通布局布线可引脚分配为N7
+![](assets/Pasted-image-20260601150213638.png)
 
 
 

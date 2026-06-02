@@ -1,7 +1,4 @@
 
-
-
-
 ## 1.新建工程
 ![](assets/Pasted-image-20260428160813453.png)
 ![](assets/Pasted-image-20260428160947248.png)
@@ -24,9 +21,9 @@
 去掉前缀
 ![](assets/Pasted-image-20260428162535779.png)
 
-
-
-
+显示波形的指令，放在仿真命令上
+-voptargs=+acc
+![](assets/Pasted-image-20260505152246335.png)
 
 
 
